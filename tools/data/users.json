@@ -2,46 +2,60 @@
 	{
 		"name": "Lucent Rai",
 		"role": "admin",
-		"rollNo": null
+		"email": "lucent@gmail.com",
+		"password": "pass1234"
 	},
 	{
 		"name": "Kashmin Shrestha",
 		"role": "admin",
-		"rollNo": null
+		"email": "kashmin@gmail.com",
+		"password": "pass1234"
 	},
 	{
 		"name": "Raymond Maharjan",
 		"role": "admin",
-		"rollNo": null
+		"email": "raymond@gmail.com",
+		"password": "pass1234"
 	},
 	{
 		"name": "Ayush Acharya",
 		"role": "admin",
-		"rollNo": null
+		"email": "ayush@gmail.com",
+		"password": "pass1234"
 	},
 	{
 		"name": "Ayush Pradhan",
 		"role": "student",
-		"rollNo": 190317
+		"email": "pradhan@gmail.com",
+		"rollNo": 190317,
+		"password": "pass1234"
 	},
 	{
 		"name": "Manas Shrestha",
 		"role": "student",
-		"rollNo": 190318
+		"email": "manas@gmail.com",
+		"rollNo": 190318,
+		"password": "pass1234"
 	},
 	{
 		"name": "Laxmi Mahato",
 		"role": "student",
-		"rollNo": 190319
+		"email": "laxmi@gmail.com",
+		"rollNo": 190319,
+		"password": "pass1234"
 	},
 	{
 		"name": "Ram Limbu",
 		"role": "student",
-		"rollNo": 190320
+		"email": "ram@gmail.com",
+		"rollNo": 190320,
+		"password": "pass1234"
 	},
 	{
 		"name": "Som Magar",
 		"role": "student",
-		"rollNo": 190321
+		"email": "som@gmail.com",
+		"rollNo": 190321,
+		"password": "pass1234"
 	}
 ]

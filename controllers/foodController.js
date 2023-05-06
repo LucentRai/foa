@@ -1,12 +1,12 @@
 const Food = require('../models/FoodModel');
 const AppError = require('../utils/AppError');
-const catchAsync = require('../utils/catchAsync');
+// const catchAsync = require('../utils/catchAsync');
 const factoryFunc = require('./handlerFactory');
 
 
 
 module.exports = {
-	getAllFood: factoryFunc.getAll(Food),
+	getAllFoods: factoryFunc.getAll(Food),
 	getFood: factoryFunc.getOne(Food),
 	createFood: factoryFunc.createOne(Food),
 	updateFood: factoryFunc.updateOne(Food),

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const userSchema = mongoose.Schema({
 	name: {
@@ -11,11 +12,23 @@ const userSchema = mongoose.Schema({
 	role: {
 		type: String,
 		default: 'student',
-		enum: ['admin', 'student', 'staff', 'customer']
+		enum: ['admin', 'student', 'customer']
+	},
+	email: {
+		type: String,
+		required: [true, 'User email is required'],
+		unique: true,
+		lowercase: true,
+		validate: [validator.isEmail, 'Please provide valid email']
 	},
 	rollNo: {
-		type: Number,
-		unique: true
+		type: Number
+	},
+	password: {
+		type: String,
+		required: [true, 'Password must be set'],
+		minlength: [8, 'Password must be at least 8 characters long'],
+		select: false
 	}
 });
 
