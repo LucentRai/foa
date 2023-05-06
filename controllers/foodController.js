@@ -1,5 +1,6 @@
 const Food = require('../models/FoodModel');
 const AppError = require('../utils/AppError');
+const catchAsync = require('../utils/catchAsync');
 
 async function getFood(req, res, next){
 	let foods = {};
@@ -8,7 +9,10 @@ async function getFood(req, res, next){
 		foods = await Food.find();
 	}
 	else{
-		foods = await Food.findOne({id: req.params.id});
+		foods = await Food.findById(req.params.id);
+		if(!foods){
+			next(new AppError(`No food with id ${req.params.id} found`, 404));
+		}
 	}
 
 	res
@@ -58,8 +62,8 @@ async function deleteFood(req, res, next){
 }
 
 module.exports = {
-	getFood,
-	createFood,
-	updateFood,
-	deleteFood
+	getFood: catchAsync(getFood),
+	createFood: catchAsync(createFood),
+	updateFood: catchAsync(updateFood),
+	deleteFood: catchAsync(deleteFood)
 };
