@@ -1,0 +1,22 @@
+[
+	{
+		"customer": "",
+		"food": ["64561c9079021f5de4e6cd3e", "64561c9079021f5de4e6cd3f"],
+		"quantity": [1, 5]
+	},
+	{
+		"customer": "",
+		"food": ["64561c9079021f5de4e6cd41", "64561c9079021f5de4e6cd40"],
+		"quantity": [2, 5]
+	},
+	{
+		"customer": "",
+		"food": ["64561c9079021f5de4e6cd42", "64561c9079021f5de4e6cd43", "64561c9079021f5de4e6cd3e"],
+		"quantity": [1, 5, 0.5]
+	},
+	{
+		"customer": "",
+		"food": ["64561c9079021f5de4e6cd40", "64561c9079021f5de4e6cd43"],
+		"quantity": [1, 2]
+	}
+]

@@ -4,7 +4,7 @@ const foodController = require('../controllers/foodController');
 const router = express.Router();
 
 router.route('/')
-	.get(foodController.getFood)
+	.get(foodController.getAllFood)
 	.post(foodController.createFood);
 
 router.route('/:id')

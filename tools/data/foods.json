@@ -3,7 +3,7 @@
 		"name": "Daal Bhat",
 		"price": 120,
 		"summary": "Daal Bhat Tarkari",
-		"image": "asdf.jpg",
+		"images": ["asdf.jpg"],
 		"ratingsAverage": 3.5,
 		"ratingsQuantity": 4
 	},
@@ -11,7 +11,7 @@
 		"name": "Pakoda",
 		"price": 30,
 		"summary": "ताताे पकाेडा",
-		"image": "pakoda.jpg",
+		"images": ["pakoda.jpg"],
 		"ratingsAverage": 2,
 		"ratingsQuantity": 3
 	},
@@ -19,7 +19,7 @@
 		"name": "Samosa",
 		"price": 25,
 		"summary": "समाेसा",
-		"image": "samosa.jpg",
+		"images": ["samosa.jpg"],
 		"ratingsAverage": 4,
 		"ratingsQuantity": 2
 	},
@@ -27,7 +27,7 @@
 		"name": "Hard Boiled Egg",
 		"price": 20,
 		"summary": "अण्डा",
-		"image": "egg.jpg",
+		"images": ["egg.jpg"],
 		"ratingsAverage": 4.5,
 		"ratingsQuantity": 1
 	},
@@ -35,7 +35,7 @@
 		"name": "Jerri",
 		"price": 15,
 		"summary": "जेरी",
-		"image": "jerri.jpg",
+		"images": ["jerri.jpg"],
 		"ratingsAverage": 4,
 		"ratingsQuantity": 0
 	},
@@ -43,7 +43,7 @@
 		"name": "Channa",
 		"price": 10,
 		"summary": "चना",
-		"image": "channa.jpg",
+		"images": ["channa.jpg"],
 		"ratingsAverage": 3,
 		"ratingsQuantity": 3
 	}

@@ -1,0 +1,47 @@
+[
+	{
+		"name": "Lucent Rai",
+		"role": "admin",
+		"rollNo": null
+	},
+	{
+		"name": "Kashmin Shrestha",
+		"role": "admin",
+		"rollNo": null
+	},
+	{
+		"name": "Raymond Maharjan",
+		"role": "admin",
+		"rollNo": null
+	},
+	{
+		"name": "Ayush Acharya",
+		"role": "admin",
+		"rollNo": null
+	},
+	{
+		"name": "Ayush Pradhan",
+		"role": "student",
+		"rollNo": 190317
+	},
+	{
+		"name": "Manas Shrestha",
+		"role": "student",
+		"rollNo": 190318
+	},
+	{
+		"name": "Laxmi Mahato",
+		"role": "student",
+		"rollNo": 190319
+	},
+	{
+		"name": "Ram Limbu",
+		"role": "student",
+		"rollNo": 190320
+	},
+	{
+		"name": "Som Magar",
+		"role": "student",
+		"rollNo": 190321
+	}
+]
