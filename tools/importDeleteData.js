@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 dotenv.config({path: `${__dirname}/../config.env`});
 
 mongoose
-	.connect(process.env.LOCAL_DB)
+	.connect(process.env.DB_LOCAL)
 	.then(() => console.log('DATABASE CONNECTED'));
 
 if(process.argv[2] === '--import'){

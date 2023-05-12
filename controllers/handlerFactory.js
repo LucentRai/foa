@@ -68,6 +68,6 @@ exports.deleteOne = Model => {
 		if(!document){
 			return next(new AppError(`No document with id ${req.params.id} found`), 404);
 		}
-		response.status(204).json();
+		res.status(204).json();
 	});
 };

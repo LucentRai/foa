@@ -1,4 +1,3 @@
-const { response } = require('../app');
 const AppError = require('../utils/AppError');
 
 module.exports = (err, req, res, next) => {
@@ -45,7 +44,7 @@ function sendErrorDev(err, res){
 
 function sendErrorClient(err, res){
 	if(err.isOperational){
-		response
+		res
 			.status(err.statusCode)
 			.json({
 				status: err.status,
@@ -53,7 +52,7 @@ function sendErrorClient(err, res){
 			});
 	}
 	else{
-		response
+		res
 			.status(500)
 			.json({
 				status: 'Error',

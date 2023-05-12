@@ -3,59 +3,59 @@
 		"name": "Lucent Rai",
 		"role": "admin",
 		"email": "lucent@gmail.com",
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Kashmin Shrestha",
 		"role": "admin",
 		"email": "kashmin@gmail.com",
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Raymond Maharjan",
 		"role": "admin",
 		"email": "raymond@gmail.com",
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Ayush Acharya",
 		"role": "admin",
 		"email": "ayush@gmail.com",
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Ayush Pradhan",
 		"role": "student",
 		"email": "pradhan@gmail.com",
 		"rollNo": 190317,
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Manas Shrestha",
 		"role": "student",
 		"email": "manas@gmail.com",
 		"rollNo": 190318,
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Laxmi Mahato",
 		"role": "student",
 		"email": "laxmi@gmail.com",
 		"rollNo": 190319,
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Ram Limbu",
 		"role": "student",
 		"email": "ram@gmail.com",
 		"rollNo": 190320,
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	},
 	{
 		"name": "Som Magar",
 		"role": "student",
 		"email": "som@gmail.com",
 		"rollNo": 190321,
-		"password": "pass1234"
+		"password": "$2a$12$ya43XFId9QP7yrE0h3XBLOeVXla1VTaRKl.jp0xEooFQ1j.jZ0.Xy"
 	}
 ]

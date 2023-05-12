@@ -1,3 +1,4 @@
 node_modules
 config.env
 tools/notes.ai
+tools/test.js

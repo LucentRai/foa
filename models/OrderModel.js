@@ -9,7 +9,11 @@ const orderSchema = mongoose.Schema({
 	food: {
 		type: [mongoose.Schema.ObjectId],
 		ref: 'Food',
-		required: [true, 'Food must selected']
+		required: [true, 'Food must be selected']
+	},
+	portion: {
+		type: [Number],
+		default: 1
 	},
 	quantity: {
 		type: [Number],

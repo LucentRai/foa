@@ -27,6 +27,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.1.0",
     "morgan": "^1.10.0",
+    "pug": "^3.0.2",
     "validator": "^13.9.0"
   }
 }

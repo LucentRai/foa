@@ -21,9 +21,9 @@ app.use(mongoSanitize());
 
 
 // ROUTES
-app.use('/food', foodRouter);
-app.use('/user', userRouter);
-app.use('/order', orderRouter);
+app.use('/api/food', foodRouter);
+app.use('/api/user', userRouter);
+app.use('/api/order', orderRouter);
 
 app.all('*', (req, res, next) => {
 	next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
