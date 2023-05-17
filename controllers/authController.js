@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const {promisify} = require('util');
 const crypto = require('crypto');
 const User = require('../models/UserModel');
 const catchAsync = require('../utils/catchAsync');
@@ -29,6 +30,37 @@ async function signup(req, res, next){
 	sendTokenResponse(newUser, 201, res);
 }
 
+async function checkLogin(req, res, next){
+	let token;
+
+	if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+		token = req.headers.authorization.split(' ')[1];
+	}
+
+	if(!token){
+		next(new AppError('Please login to view this page', 401));
+	}
+	const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET); // JWT Verification
+	
+	// if user is deleted after token is issued
+	const userInfo = await User.findById(decoded.id);
+	if(!userInfo){
+		next(new AppError('User no longer exist', 401));
+	}
+
+	req.userInfo = userInfo;
+	next();
+}
+
+function restrictTo(...roles){
+	return (req, res, next) => {
+		if(!roles.includes(req.userInfo.role)){
+			return next(new AppError('You are not authorized to do this operation', 403));
+		}
+		next();
+	};
+}
+
 function generateToken(id){
 	return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRATION});
 }
@@ -55,4 +87,5 @@ function sendTokenResponse(user, statusCode, res){
 module.exports = {
 	login: catchAsync(login),
 	signup: catchAsync(signup),
+	checklogin: catchAsync(checkLogin)
 };

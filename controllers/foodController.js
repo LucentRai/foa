@@ -1,5 +1,5 @@
 const Food = require('../models/FoodModel');
-const AppError = require('../utils/AppError');
+// const AppError = require('../utils/AppError');
 // const catchAsync = require('../utils/catchAsync');
 const factoryFunc = require('./handlerFactory');
 

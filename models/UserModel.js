@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const catchAsync = require('../utils/catchAsync');
 
-const roles = ['admin', 'student', 'customer'];
+const roles = ['admin', 'student', 'customer', 'cafeteria'];
 
 const userSchema = mongoose.Schema({
 	name: {

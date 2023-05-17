@@ -15,6 +15,7 @@ if(process.env.NODE_ENV === 'development'){ // for logging in development
 const foodRouter = require('./routes/foodRoute');
 const userRouter = require('./routes/userRoute');
 const orderRouter = require('./routes/orderRoute');
+const reviewRouter = require('./routes/reviewRoute');
 
 app.use(express.json({limit: '10kb'}));
 app.use(mongoSanitize());
@@ -24,6 +25,7 @@ app.use(mongoSanitize());
 app.use('/api/food', foodRouter);
 app.use('/api/user', userRouter);
 app.use('/api/order', orderRouter);
+app.use('/api/review', reviewRouter);
 
 app.all('*', (req, res, next) => {
 	next(new AppError(`Cannot find ${req.originalUrl} on the server`, 404));
