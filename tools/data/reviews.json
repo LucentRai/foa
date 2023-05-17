@@ -1,8 +1,38 @@
 [
 	{
-		"food": "",
-		"user": "",
+		"food": "64643dd7d8d2849ddf7b3f8d",
+		"user": "64643cbd30898028df60d5b9",
 		"review": "Lorem ipsum",
+		"rating": 5
+	},
+	{
+		"food": "64643dd7d8d2849ddf7b3f8b",
+		"user": "64643cbd30898028df60d5b9",
+		"review": "something something review",
+		"rating": 3
+	},
+	{
+		"food": "64643dd7d8d2849ddf7b3f8b",
+		"user": "64643cbd30898028df60d5bc",
+		"review": "lyang lyang",
+		"rating": 2
+	},
+	{
+		"food": "64643dd7d8d2849ddf7b3f8f",
+		"user": "64643cbd30898028df60d5bd",
+		"review": "asdf asdf",
+		"rating": 1
+	},
+	{
+		"food": "64643dd7d8d2849ddf7b3f8f",
+		"user": "64643cbd30898028df60d5ba",
+		"review": "lorema aerm",
+		"rating": 4
+	},
+	{
+		"food": "64643dd7d8d2849ddf7b3f90",
+		"user": "64643cbd30898028df60d5bb",
+		"review": "asdfeisnl lweirna l",
 		"rating": 5
 	}
 ]

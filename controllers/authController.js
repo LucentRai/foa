@@ -30,7 +30,7 @@ async function signup(req, res, next){
 	sendTokenResponse(newUser, 201, res);
 }
 
-async function checkLogin(req, res, next){
+async function protectRoute(req, res, next){
 	let token;
 
 	if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
@@ -87,5 +87,5 @@ function sendTokenResponse(user, statusCode, res){
 module.exports = {
 	login: catchAsync(login),
 	signup: catchAsync(signup),
-	checklogin: catchAsync(checkLogin)
+	protectRoute: catchAsync(protectRoute)
 };
