@@ -1,8 +1,5 @@
 const fs = require('fs');
 const mongoose = require('mongoose');
-const Food = require('../models/FoodModel');
-const Order = require('../models/OrderModel');
-const User = require('../models/UserModel');
 const dotenv = require('dotenv');
 
 dotenv.config({path: `${__dirname}/../config.env`});
@@ -26,13 +23,20 @@ else{
 async function importData(){
 	try{
 		if(!process.argv[3]){
+			const Food = require('../models/FoodModel');
+			const Order = require('../models/OrderModel');
+			const User = require('../models/UserModel');
+			const Review = require('../models/ReviewModel');
+
 			const foods = JSON.parse(fs.readFileSync(`${__dirname}/data/foods.json`, 'utf-8'));
 			const users = JSON.parse(fs.readFileSync(`${__dirname}/data/users.json`, 'utf-8'));
 			const orders = JSON.parse(fs.readFileSync(`${__dirname}/data/orders.json`, 'utf-8'));
+			const reviews = JSON.parse(fs.readFileSync(`${__dirname}/data/reviews.json`, 'utf-8'));
 
 			await Food.create(foods);
 			await User.create(users);
 			await Order.create(orders);
+			await Review.create(reviews);
 
 			console.log('Data Imported Successfully');
 			return;
@@ -42,31 +46,41 @@ async function importData(){
 			case 'F':
 			case 'f':
 			case 'food':
+				const Food = require('../models/FoodModel');
 				const foods = JSON.parse(fs.readFileSync(`${__dirname}/data/foods.json`, 'utf-8'));
 				await Food.create(foods);
+				console.log('Food data imported successfully');
 				break;
 
 			case 'O':
 			case 'o':
 			case 'order':
+				const Order = require('../models/OrderModel');
 				const orders = JSON.parse(fs.readFileSync(`${__dirname}/data/orders.json`, 'utf-8'));
 				await Order.create(orders);
+				console.log('Order data imported successfully');
 				break;
 
 			case 'U':
 			case 'u':
 			case 'users':
+				const User = require('../models/UserModel');
 				const users = JSON.parse(fs.readFileSync(`${__dirname}/data/users.json`, 'utf-8'));
+				await User.create(users);
+				console.log('Users data imported successfully');
 				break;
 
 			case 'R':
 			case 'r':
 			case 'reviews':
+				const Review = require('../models/ReviewModel');
 				const reviews = JSON.parse(fs.readFileSync(`${__dirname}/data/reviews.json`, 'utf-8'));
+				await Review.create(reviews);
+				console.log('Reviews data imported successfully');
 				break;
 
 			default:
-				console.log('Unrecognized argument');
+				throw "Unrecognized argument";
 				break;
 		}
 	}
@@ -79,6 +93,9 @@ async function importData(){
 }
 
 async function deleteData(){
+	const Food = require('../models/FoodModel');
+	const Order = require('../models/OrderModel');
+	const User = require('../models/UserModel');
 	try{
 		await Food.deleteMany();
 		await User.deleteMany();
