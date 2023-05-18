@@ -1,8 +1,13 @@
-const bcrypt = require('bcryptjs');
-// const mongoose = require('mongoose');
+const a = {
+	a: 1,
+	b: 2
+},
 
-// mongoose
-// 	.connect('mongodb://127.0.0.1:27017/foa')
-// 	.then(() => console.log('DATABASE CONNECTED'));
-const a = bcrypt.hash('test1234', 12)
-	.then(hash => console.log(hash));
+b = {
+	c: 3,
+	d: 4
+};
+
+let c = {};
+Object.assign(c, a, b);
+console.log(c);

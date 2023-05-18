@@ -87,5 +87,6 @@ function sendTokenResponse(user, statusCode, res){
 module.exports = {
 	login: catchAsync(login),
 	signup: catchAsync(signup),
-	protectRoute: catchAsync(protectRoute)
+	protectRoute: catchAsync(protectRoute),
+	restrictTo
 };

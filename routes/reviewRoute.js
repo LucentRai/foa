@@ -7,5 +7,7 @@ reviewRouter.post('/', reviewController.createReview);
 
 reviewRouter.route(':/id')
 	.get(reviewController.getReview)
-	.update(reviewController.updateReview)
+	.patch(reviewController.updateReview)
 	.delete(reviewController.deleteReview);
+
+module.exports = reviewRouter;

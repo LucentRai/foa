@@ -66,7 +66,7 @@ async function importData(){
 			case 'users':
 				const User = require('../models/UserModel');
 				const users = JSON.parse(fs.readFileSync(`${__dirname}/data/users.json`, 'utf-8'));
-				await User.create(users);
+				await User.create(users, {validateBeforeSave: false});
 				console.log('Users data imported successfully');
 				break;
 

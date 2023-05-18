@@ -39,9 +39,8 @@
 },{
   "_id": "64643cbd30898028df60d5bd",
   "name": "Som Magar",
-  "role": "student",
+  "role": "cafeteria",
   "email": "som@gmail.com",
-  "rollNo": 190321,
   "password": "p@ssw0rd1234"
 },{
   "_id": "64643cbd30898028df60d5ba",
