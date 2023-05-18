@@ -1,78 +1,60 @@
 [{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5b5"
-  },
+  "_id": "64643cbd30898028df60d5b5",
   "name": "Lucent Rai",
   "role": "admin",
   "email": "lucent@gmail.com",
-  "password": "$2a$12$sDNUWI9PEOxCa7CGZF1JweYxg3/r7FKsKRO9zJir0gi5hFTvBZLZu"
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5b8"
-  },
+  "_id": "64643cbd30898028df60d5b8",
   "name": "Ayush Acharya",
   "role": "admin",
   "email": "ayush@gmail.com",
-  "password": "$2a$12$e4c8TviL7unzThYXTPm0COdOdBQ6HfplpQEaekiP7fvs7AnE8kl.6"
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5b9"
-  },
+  "_id": "64643cbd30898028df60d5b9",
   "name": "Ayush Pradhan",
   "role": "student",
   "email": "pradhan@gmail.com",
   "rollNo": 190317,
-  "password": "$2a$12$4LbZQaY5SglKr97F/DAzLeSpQ4FxLw49PvKAzjB0cgW5KdPOPyLi."
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5b6"
-  },
+  "_id": "64643cbd30898028df60d5b6",
   "name": "Kashmin Shrestha",
   "role": "admin",
   "email": "kashmin@gmail.com",
-  "password": "$2a$12$8YMiyyKj1MN8QqF3gTIUwu8XOl6RrFyg1GWe.MWlJLNz4HnJQYWT2"
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5b7"
-  },
+  "_id": "64643cbd30898028df60d5b7",
   "name": "Raymond Maharjan",
   "role": "admin",
   "email": "raymond@gmail.com",
-  "password": "$2a$12$eriZKyUvdYs4PFuO2201C.Jh2Ljp7Prfr./yZmra1oxnUpH0JRG0m"
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5bc"
-  },
+  "_id": "64643cbd30898028df60d5bc",
   "name": "Ram Limbu",
   "role": "student",
   "email": "ram@gmail.com",
   "rollNo": 190320,
-  "password": "$2a$12$eYEqlmkrjmqq/CxKJ7T/KOn351kvBiYkZJXVXOkce3uPg/3.WJkUa"
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5bd"
-  },
+  "_id": "64643cbd30898028df60d5bd",
   "name": "Som Magar",
   "role": "student",
   "email": "som@gmail.com",
   "rollNo": 190321,
-  "password": "$2a$12$SbWyYrTs/h.whX9HmPJbSecEgRzkCYsTV02f92Gkt.xgv.nnBbPUK"
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5ba"
-  },
+  "_id": "64643cbd30898028df60d5ba",
   "name": "Manas Shrestha",
   "role": "student",
   "email": "manas@gmail.com",
   "rollNo": 190318,
-  "password": "$2a$12$dLpk6.s/y1y8sc/nKQnhj.cmGm.f7eirZ2hdRy/3b1TpKPjHjQNwi"
+  "password": "p@ssw0rd1234"
 },{
-  "_id": {
-    "$oid": "64643cbd30898028df60d5bb"
-  },
+  "_id": "64643cbd30898028df60d5bb",
   "name": "Laxmi Mahato",
   "role": "student",
   "email": "laxmi@gmail.com",
   "rollNo": 190319,
-  "password": "$2a$12$1HA0skIhZDlfSTS7NtN4ceFgdfpmneBNnG8o3507h6aHx8Ib/.oJa"
+  "password": "p@ssw0rd1234"
 }]
