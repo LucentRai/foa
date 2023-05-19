@@ -4,20 +4,31 @@ const Order = require('../models/OrderModel');
 const factoryFunc = require('./handlerFactory');
 
 async function getOrder(req, res, next){
-	const order = await Order.findById(req.params.id);
+	let order;
 
-	if(userInfo.role === 'admin' || userInfo.role === 'cafeteria'){
-		res.status(200)
-			.json({
-				status: 'success',
-				data: {
-					order
-				}
-			});
+	if(req.userInfo.role === 'student' || req.userInfo.role === 'customer'){
+		order = await Order.find({customer: req.userInfo.id});
 	}
 
-	if(userInfo.id !== order.user){
-		return next(new AppError('You are not authorized to access this order.', 401));
+	if(req.params.id){
+		if(req.userInfo.role === 'admin'){
+			order = await Order.find({customer: req.params.id});
+		}
+		else if(req.userInfo.role === 'cafeteria'){
+			order = await Order.find({
+				customer: req.params.id,
+				food: {block: req.userInfo.block} // ordered food should be in that cafeteria
+			});
+		}
+	}
+	else { 
+		if(req.userInfo.role === 'admin'){
+			factoryFunc.getAll(Order)(req, res, next);
+			return;
+		}
+		else if(req.userInfo.role === 'cafeteria'){ // all orders with foods availabe at specific cafeteria
+			order = await Order.find({food: {block: req.userInfo.block}});
+		}
 	}
 
 	res.status(200)
@@ -43,8 +54,8 @@ async function orderFood(req, res, next){
 		});
 }
 
+
 module.exports = {
-	getAllOrders: factoryFunc.getAll(Order),
 	getOrder: catchAsync(getOrder),
 	orderFood: catchAsync(orderFood),
 	createOrder: factoryFunc.createOne(Order),
