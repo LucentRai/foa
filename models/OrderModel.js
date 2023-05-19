@@ -27,4 +27,12 @@ const orderSchema = mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+orderSchema.virtual('foods', {
+	ref: 'Food',
+	foreignField: 'food',
+	localField: '_id'
+});
+
+const Order = mongoose.model('Order', orderSchema);
+
+module.exports = Order;
