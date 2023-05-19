@@ -4,6 +4,7 @@ const validator = require('validator');
 // const catchAsync = require('../utils/catchAsync');
 
 const roles = ['admin', 'student', 'customer', 'cafeteria'];
+const blocks = ['A', 'B', 'C'];
 
 const userSchema = mongoose.Schema({
 	name: {
@@ -39,6 +40,11 @@ const userSchema = mongoose.Schema({
 		required: [true, 'Password must be set'],
 		minlength: [8, 'Password must be at least 8 characters long'],
 		select: false
+	},
+	block: {
+		type: String,
+		enum: blocks,
+		default: 'A'
 	}
 });
 
