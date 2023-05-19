@@ -1,3 +1,2 @@
 # FOA
-Cafeteria Food Ordering App
-For VI Semester Project
+Cafeteria Food Ordering App for VI Semester Project
