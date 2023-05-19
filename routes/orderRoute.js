@@ -7,12 +7,12 @@ const router = express.Router();
 router.use(authController.protectRoute);
 
 router.route('/')
-	.get(authController.restrictTo('admin'), orderController.getAllOrders)
+	.get(orderController.getOrder)
 	.post(authController.restrictTo('student', 'customer'), orderController.orderFood)
 	.post(authController.restrictTo('admin'), orderController.createOrder);
 
 router.route('/:id')
-	.get(orderController.getOrder)
+	.get(authController.restrictTo('admin', 'cafeteria'), orderController.getOrder)
 	.patch(authController.restrictTo('admin', 'student', 'customer'), orderController.updateOrder)
 	.delete(orderController.deleteOrder);
 
