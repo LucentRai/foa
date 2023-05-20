@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
+const AppError = require('../utils/AppError');
 // const catchAsync = require('../utils/catchAsync');
 
 const roles = ['admin', 'student', 'customer', 'cafeteria'];
@@ -26,13 +27,21 @@ const userSchema = mongoose.Schema({
 		lowercase: true,
 		validate: [validator.isEmail, 'Please provide valid email']
 	},
+	phoneNo: {
+		type: Number,
+		maxlength: [10, 'Phone number must not exceed 10 digits']
+	},
 	rollNo: {
 		type: Number,
 		validate: {
-			validator: function(r) {
-				return this.role === 'student' ? true : false;
-			},
-			message: 'Only student can have roll number'
+			validator: async function (roll){
+				console.log('here');
+				if(roll === null || roll === undefined){
+					return true;
+				}
+				const userCount = await mongoose.models.User.countDocuments({rollNo: roll});
+				return userCount === 0;
+			}
 		}
 	},
 	password: {
@@ -66,3 +75,28 @@ const User = mongoose.model('User', userSchema);
 User.roles = [...roles];
 
 module.exports = User;
+
+// async function validateRollNo(roll){
+// 	if(this.role === 'student'){
+// 		console.log(this.rollNo);
+// 		if(!this.rollNo){
+// 			next(new AppError('Provide a valid roll no for student'));
+// 			return false;
+// 		}
+// 		const userCount = await mongoose.models.User.countDocuments({rollNo: roll});
+// 		if(userCount){
+// 			next(new AppError(`There is already student with ${this.rollNo}`));
+// 			return false;
+// 		}
+// 	}
+// 	return true;
+// }
+// async function validateRollNo(roll){
+// 	console.log('here');
+// 	if(roll === null || roll === undefined){
+// 		return true;
+// 	}
+
+// 	const userCount = await mongoose.models.User.countDocuments({rollNo: roll});
+// 	return userCount === 0;
+// }
