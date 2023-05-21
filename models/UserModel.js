@@ -33,16 +33,7 @@ const userSchema = mongoose.Schema({
 	},
 	rollNo: {
 		type: Number,
-		validate: {
-			validator: async function (roll){
-				console.log('here');
-				if(roll === null || roll === undefined){
-					return true;
-				}
-				const userCount = await mongoose.models.User.countDocuments({rollNo: roll});
-				return userCount === 0;
-			}
-		}
+		validate: uniqueRollCheck // 'unique' property is not used because we want to send custom message to user and also save null value for users with other roles
 	},
 	password: {
 		type: String,
@@ -76,27 +67,13 @@ User.roles = [...roles];
 
 module.exports = User;
 
-// async function validateRollNo(roll){
-// 	if(this.role === 'student'){
-// 		console.log(this.rollNo);
-// 		if(!this.rollNo){
-// 			next(new AppError('Provide a valid roll no for student'));
-// 			return false;
-// 		}
-// 		const userCount = await mongoose.models.User.countDocuments({rollNo: roll});
-// 		if(userCount){
-// 			next(new AppError(`There is already student with ${this.rollNo}`));
-// 			return false;
-// 		}
-// 	}
-// 	return true;
-// }
-// async function validateRollNo(roll){
-// 	console.log('here');
-// 	if(roll === null || roll === undefined){
-// 		return true;
-// 	}
-
-// 	const userCount = await mongoose.models.User.countDocuments({rollNo: roll});
-// 	return userCount === 0;
-// }
+async function uniqueRollCheck(roll){
+	if(!roll){
+		return true;
+	}
+	const userCount = await mongoose.models.User.countDocuments({rollNo: roll});
+	if(userCount){
+		throw new AppError(`There is already student with roll number ${this.rollNo}`);
+	}
+	return true;
+}

@@ -21,12 +21,22 @@ async function signup(req, res, next){
 	if(!(req.body.role === 'student') && !(req.body.role === 'customer')){ // values other than student or customer will not pass
 		return next(new AppError('Cannot create this user role from this route. Contact Admin', 400));
 	}
-	const newUser = await User.create({
+	let userDetail = {
 		name: req.body.name,
+		role: req.body.role,
 		email: req.body.email,
-		password: req.body.password,
-		role: req.body.role
-	});
+		phoneNo: req.body.phoneNo,
+		password: req.body.password
+	};
+
+	if(req.body.role === 'student'){
+		if(!req.body.rollNo){
+			return next(new AppError('Student must have roll number'));
+		}
+		userDetail.rollNo = req.body.rollNo;
+	}
+
+	const newUser = await User.create(userDetail);
 	sendTokenResponse(newUser, 201, res);
 }
 
