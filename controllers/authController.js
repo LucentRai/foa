@@ -53,7 +53,7 @@ async function protectRoute(req, res, next){
 	const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET); // JWT Verification
 	
 	// if user is deleted after token is issued
-	const userInfo = await User.findById(decoded.id);
+	const userInfo = await User.findById(decoded.id).select('-__v');
 	if(!userInfo){
 		next(new AppError('User no longer exist', 401));
 	}
