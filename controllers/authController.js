@@ -10,7 +10,7 @@ async function login(req, res, next){
 	if(!email || !password){
 		return next(new AppError('Both email and password required.', 400));
 	}
-	const user = await User.findOne({email}).select('+password'); // explicitly mentioning to select password
+	const user = await User.findOne({email}).select('+password -__v'); // explicitly mentioning to select password
 	if(!user || !(await user.doesPasswordMatch(password, user.password))){
 		return next(new AppError('Email or password does not match', 401));
 	}

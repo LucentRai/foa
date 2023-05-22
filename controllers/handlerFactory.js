@@ -21,6 +21,9 @@ exports.getOne = Model => {
 exports.getAll = Model => {
 	return catchAsync(async (req, res, next) => {
 		const document = await Model.find().select('-__v');
+		if(!document){
+			return next(new AppError(`No document found`, 404));
+		}
 		res.status(200)
 			.json({
 				status: 'success',
