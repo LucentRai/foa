@@ -2,18 +2,21 @@ const express = require('express');
 const authController = require('../controllers/authController');
 const orderController = require('../controllers/orderController');
 
-const router = express.Router();
+const orderRouter = express.Router();
 
-router.use(authController.protectRoute);
+orderRouter.use(authController.protectRoute);
 
-router.route('/')
-	.get(orderController.getOrder)
-	.post(authController.restrictTo('student', 'customer'), orderController.orderFood)
-	.post(authController.restrictTo('admin'), orderController.createOrder);
+orderRouter.route('/')
+	.post(authController.restrictTo('student', 'customer', 'admin'), orderController.orderFood)
+	.post(authController.restrictTo('admin'), orderController.createOrder)
+	.patch(authController.restrictTo('admin'), orderController.updateOrder);
 
-router.route('/:id')
+orderRouter.get('/my-order', authController.restrictTo('student', 'customer', 'admin'), orderController.getMyOrder);
+orderRouter.get('/all', authController.restrictTo('admin', 'cafeteria'), orderController.getAllOrders);
+
+orderRouter.route('/:id')
 	.get(authController.restrictTo('admin', 'cafeteria'), orderController.getOrder)
-	.patch(authController.restrictTo('admin', 'student', 'customer'), orderController.updateOrder)
+	.patch(authController.restrictTo('student', 'customer'), orderController.updateMyOrder)
 	.delete(orderController.deleteOrder);
 
-module.exports = router;
+module.exports = orderRouter;
