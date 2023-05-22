@@ -1,73 +1,61 @@
 [{
-  "_id": {
-    "$oid": "64643dd7d8d2849ddf7b3f8d"
-  },
-  "name": "Samosa",
-  "price": 25,
-  "summary": "समाेसा",
-  "images": [
-    "samosa.jpg"
-  ],
-  "ratingsAverage": 4,
-  "ratingsQuantity": 2
+	"_id": "64643dd7d8d2849ddf7b3f8d",
+	"name": "Samosa",
+	"price": 25,
+	"summary": "समाेसा",
+	"images": [
+		"samosa.jpg"
+	],
+	"ratingsAverage": 4,
+	"ratingsQuantity": 2
 },{
-  "_id": {
-    "$oid": "64643dd7d8d2849ddf7b3f8b"
-  },
-  "name": "Daal Bhat",
-  "price": 120,
-  "summary": "Daal Bhat Tarkari",
-  "images": [
-    "asdf.jpg"
-  ],
-  "ratingsAverage": 3.5,
-  "ratingsQuantity": 4
+	"_id": "64643dd7d8d2849ddf7b3f8b",
+	"name": "Daal Bhat",
+	"price": 120,
+	"summary": "Daal Bhat Tarkari",
+	"images": [
+		"asdf.jpg"
+	],
+	"ratingsAverage": 3.5,
+	"ratingsQuantity": 4
 },{
-  "_id": {
-    "$oid": "64643dd7d8d2849ddf7b3f8f"
-  },
-  "name": "Jerri",
-  "price": 15,
-  "summary": "जेरी",
-  "images": [
-    "jerri.jpg"
-  ],
-  "ratingsAverage": 4,
-  "ratingsQuantity": 0
+	"_id": "64643dd7d8d2849ddf7b3f8f",
+	"name": "Jerri",
+	"price": 15,
+	"summary": "जेरी",
+	"images": [
+		"jerri.jpg"
+	],
+	"ratingsAverage": 4,
+	"ratingsQuantity": 0
 },{
-  "_id": {
-    "$oid": "64643dd7d8d2849ddf7b3f90"
-  },
-  "name": "Channa",
-  "price": 10,
-  "summary": "चना",
-  "images": [
-    "channa.jpg"
-  ],
-  "ratingsAverage": 3,
-  "ratingsQuantity": 3
+	"_id":"64643dd7d8d2849ddf7b3f90",
+	"name": "Channa",
+	"price": 10,
+	"summary": "चना",
+	"images": [
+		"channa.jpg"
+	],
+	"ratingsAverage": 3,
+	"ratingsQuantity": 3
 },{
-  "_id": {
-    "$oid": "64643dd7d8d2849ddf7b3f8c"
-  },
-  "name": "Pakoda",
-  "price": 30,
-  "summary": "ताताे पकाेडा",
-  "images": [
-    "pakoda.jpg"
-  ],
-  "ratingsAverage": 2,
-  "ratingsQuantity": 3
+	"_id": "64643dd7d8d2849ddf7b3f8c",
+	"name": "Pakoda",
+	"price": 30,
+	"summary": "ताताे पकाेडा",
+	"images": [
+		"pakoda.jpg"
+	],
+	"ratingsAverage": 2,
+	"ratingsQuantity": 3
 },{
-  "_id": {
-    "$oid": "64643dd7d8d2849ddf7b3f8e"
-  },
-  "name": "Hard Boiled Egg",
-  "price": 20,
-  "summary": "अण्डा",
-  "images": [
-    "egg.jpg"
-  ],
-  "ratingsAverage": 4.5,
-  "ratingsQuantity": 1
+	"_id": "64643dd7d8d2849ddf7b3f8e",
+	"name": "Hard Boiled Egg",
+	"price": 20,
+	"summary": "अण्डा",
+	"images": [
+		"egg.jpg"
+	],
+	"ratingsAverage": 4.5,
+	"ratingsQuantity": 1
 }]
