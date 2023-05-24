@@ -1,15 +1,18 @@
 const mongoose = require('mongoose');
+const AppError = require('../utils/AppError');
 
 const reviewSchema = new mongoose.Schema({
 	food: {
 		type: mongoose.Schema.ObjectId,
-		ref: 'Food',
-		required: [true, 'Review should belong to a Food item']
+		ref: 'Food'
 	},
 	user: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'User',
 		required: [true, 'Review should belong to a user']
+	},
+	branch: {
+		type: String
 	},
 	review: {
 		type: String,
@@ -27,10 +30,14 @@ const reviewSchema = new mongoose.Schema({
 		default: Date.now(),
 		select: false
 	}
-},
-{
-	toJSON: {virtuals: true},
-	toObject: {virtuals: true}
+});
+
+// MIDDLEWARES
+reviewSchema.pre('save', function(next){
+	if(this.food && this.branch){
+		next(new AppError('Cannot add review of food and block at the same time', 400));
+	}
+	next();
 });
 
 const ReviewModel = mongoose.model('Review', reviewSchema);

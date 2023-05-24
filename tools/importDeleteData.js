@@ -27,18 +27,25 @@ async function importData(){
 			const Order = require('../models/OrderModel');
 			const User = require('../models/UserModel');
 			const Review = require('../models/ReviewModel');
+			const Branch = required('../models/BranchModel');
 
 			const foods = JSON.parse(fs.readFileSync(`${__dirname}/data/foods.json`, 'utf-8'));
 			const users = JSON.parse(fs.readFileSync(`${__dirname}/data/users.json`, 'utf-8'));
 			const orders = JSON.parse(fs.readFileSync(`${__dirname}/data/orders.json`, 'utf-8'));
 			const reviews = JSON.parse(fs.readFileSync(`${__dirname}/data/reviews.json`, 'utf-8'));
+			const branches = JSON.parse(fs.readFileSync(`${__dirname}/data/branches.json`, 'utf-8'));
 
 			await Food.create(foods);
+			console.log('Food Data Imported Successfully');
 			await User.create(users);
+			console.log('User Data Imported Successfully');
 			await Order.create(orders);
+			console.log('Order Data Imported Successfully');
 			await Review.create(reviews);
+			console.log('Review Data Imported Successfully');
+			await Branch.create(branches);
+			console.log('Branch Data Imported Successfully');
 
-			console.log('Data Imported Successfully');
 			return;
 		}
 
@@ -49,7 +56,7 @@ async function importData(){
 				const Food = require('../models/FoodModel');
 				const foods = JSON.parse(fs.readFileSync(`${__dirname}/data/foods.json`, 'utf-8'));
 				await Food.create(foods);
-				console.log('Food data imported successfully');
+				console.log('Food data imported');
 				break;
 
 			case 'O':
@@ -58,7 +65,7 @@ async function importData(){
 				const Order = require('../models/OrderModel');
 				const orders = JSON.parse(fs.readFileSync(`${__dirname}/data/orders.json`, 'utf-8'));
 				await Order.create(orders);
-				console.log('Order data imported successfully');
+				console.log('Order data imported');
 				break;
 
 			case 'U':
@@ -67,7 +74,7 @@ async function importData(){
 				const User = require('../models/UserModel');
 				const users = JSON.parse(fs.readFileSync(`${__dirname}/data/users.json`, 'utf-8'));
 				await User.create(users, {validateBeforeSave: false});
-				console.log('Users data imported successfully');
+				console.log('Users data imported');
 				break;
 
 			case 'R':
@@ -76,12 +83,20 @@ async function importData(){
 				const Review = require('../models/ReviewModel');
 				const reviews = JSON.parse(fs.readFileSync(`${__dirname}/data/reviews.json`, 'utf-8'));
 				await Review.create(reviews);
-				console.log('Reviews data imported successfully');
+				console.log('Reviews data imported');
 				break;
+
+				case 'B':
+				case 'b':
+				case 'branches':
+					const Branch = require('../models/BranchModel');
+					const branches = JSON.parse(fs.readFileSync(`${__dirname}/data/branches.json`, 'utf-8'));
+					await Branch.create(branches);
+					console.log('Branches data imported');
+					break;
 
 			default:
 				throw "Unrecognized argument";
-				break;
 		}
 	}
 	catch(err){

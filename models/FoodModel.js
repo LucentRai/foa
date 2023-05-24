@@ -34,7 +34,7 @@ const foodSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
-	block: {
+	branch: {
 		type: String,
 		enum: blocks,
 		default: 'A'

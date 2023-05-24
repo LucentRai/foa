@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const blockSchema = new mongoose.Schema({
+const branchSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: [true, 'Block name required'],
@@ -27,6 +27,6 @@ const blockSchema = new mongoose.Schema({
 	}
 });
 
-const BlockModel = mongoose.model('Block', blockSchema);
+const BranchModel = mongoose.model('Branch', branchSchema, 'branches');
 
-module.exports = BlockModel;
+module.exports = BranchModel;

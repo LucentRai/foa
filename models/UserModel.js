@@ -41,7 +41,7 @@ const userSchema = mongoose.Schema({
 		minlength: [8, 'Password must be at least 8 characters long'],
 		select: false
 	},
-	block: {
+	branch: {
 		type: String,
 		enum: blocks,
 		default: 'A'
