@@ -4,51 +4,51 @@ const Order = require('../models/OrderModel');
 const factoryFunc = require('./handlerFactory');
 
 async function getMyOrder(req, res, next){
-	const order = await Order.find({customer: req.userInfo.id}).select('-__v -customer');
-	if(!order){
-		return next(new AppError('No order placed', 404));
-	}
-	res.status(200)
-		.json({
-			status: 'success',
-			data: {order}
-		});
+	const order = await Order.find({customer: req.userInfo.id}).select('-customer');
+	respondToOrder(order, req.params.id, res, next);
 }
 
 async function getAllOrders(req, res, next){
+	let order;
+
 	if(req.userInfo.role === 'admin'){
-		factoryFunc.getAll(Order)(req, res, next);
-		return;
+		order = await Order.find()
+			.populate('customer');
 	}
 	else if(req.userInfo.role === 'cafeteria'){ // all orders with foods availabe at specific cafeteria
-		order = await Order.find({food: {$match: {block: req.userInfo.block}}}).select('-__v');
+		order = await Order.find({branch: req.userInfo.branch})
+			.populate({
+					path: 'customer',
+					select: 'name rollNo'
+			})
+			.populate({
+				path: 'foods',
+				select: '-branch -id'
+			})
+			.select('-branch');
 	}
+	respondToOrder(order, req.params.id, res, next);
 }
 
 async function getOrder(req, res, next){
 	let order;
 
 	if(req.userInfo.role === 'admin'){
-		order = await Order.find({customer: req.params.id}).select('-__v');
+		order = await Order.find({customer: req.params.id})
+			.populate('foods');
 	}
 	else if(req.userInfo.role === 'cafeteria'){
 		order = await Order.find({
 			customer: req.params.id,
-			food: {block: req.userInfo.block} // ordered food should be in that cafeteria
+			branch: req.userInfo.branch // ordered food should be in that cafeteria
 		})
-		.select('-__v');
+		.populate({
+			path: 'customer',
+			select: 'name rollNo -_id'
+		})
+		.select('-branch');
 	}
-
-	if(!order){
-		return next(new AppError(`No order with id ${req.params.id} found`, 404));
-	}
-	res.status(200)
-		.json({
-			status: 'success',
-			data: {
-				order
-			}
-		});
+	respondToOrder(order, req.params.id, res, next);
 }
 
 async function orderFood(req, res, next){
@@ -58,7 +58,7 @@ async function orderFood(req, res, next){
 	};
 
 	const order = await Order.create(userOrder);
-	res.status(200)
+	res.status(201)
 		.json({
 			status: 'success',
 			data: order
@@ -69,12 +69,24 @@ async function updateMyOrder(req, res, next){
 	
 }
 
+function respondToOrder(order, id, res, next){
+	if(!order.length){
+		return next(new AppError('No order with id found', 404));
+	}
+	res.status(200)
+		.json({
+			status: 'success',
+			data: {
+				order
+			}
+		});
+}
+
 module.exports = {
 	getOrder: catchAsync(getOrder),
 	getMyOrder: catchAsync(getMyOrder),
 	getAllOrders: catchAsync(getAllOrders),
 	orderFood: catchAsync(orderFood),
-	createOrder: factoryFunc.createOne(Order),
 	updateOrder: factoryFunc.updateOne(Order),
 	updateMyOrder,
 	deleteOrder: factoryFunc.deleteOne(Order)

@@ -8,15 +8,15 @@ orderRouter.use(authController.protectRoute);
 
 orderRouter.route('/')
 	.post(authController.restrictTo('student', 'customer', 'admin'), orderController.orderFood)
-	.post(authController.restrictTo('admin'), orderController.createOrder)
 	.patch(authController.restrictTo('admin'), orderController.updateOrder);
 
 orderRouter.get('/my-order', authController.restrictTo('student', 'customer', 'admin'), orderController.getMyOrder);
 orderRouter.get('/all', authController.restrictTo('admin', 'cafeteria'), orderController.getAllOrders);
+// orderRouter.delete('/delete/:id', orderController.deleteOrder);
 
 orderRouter.route('/:id')
 	.get(authController.restrictTo('admin', 'cafeteria'), orderController.getOrder)
 	.patch(authController.restrictTo('student', 'customer'), orderController.updateMyOrder)
-	.delete(orderController.deleteOrder);
+	.delete(authController.restrictTo('admin', 'cafeteria'), orderController.deleteOrder);
 
 module.exports = orderRouter;

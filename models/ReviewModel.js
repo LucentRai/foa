@@ -33,6 +33,10 @@ const reviewSchema = new mongoose.Schema({
 });
 
 // MIDDLEWARES
+reviewSchema.pre(/^find/, function(next){
+	this.select('-__v');
+	next();
+});
 reviewSchema.pre('save', function(next){
 	if(this.food && this.branch){
 		next(new AppError('Cannot add review of food and block at the same time', 400));

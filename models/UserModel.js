@@ -5,7 +5,6 @@ const AppError = require('../utils/AppError');
 // const catchAsync = require('../utils/catchAsync');
 
 const roles = ['admin', 'student', 'customer', 'cafeteria'];
-const blocks = ['A', 'B', 'C'];
 
 const userSchema = mongoose.Schema({
 	name: {
@@ -43,12 +42,15 @@ const userSchema = mongoose.Schema({
 	},
 	branch: {
 		type: String,
-		enum: blocks,
 		default: 'A'
 	}
 });
 
 // MIDDLEWARES
+userSchema.pre(/^find/, function(next){
+	this.select('-__v');
+	next();
+});
 userSchema.pre('save', async function(next){
 	if(!this.isModified('password')){
 		next();

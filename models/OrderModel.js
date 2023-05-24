@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema({
-	customer:{
+	customer: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 		required:[true, 'User Id must be provided']
@@ -24,9 +24,14 @@ const orderSchema = mongoose.Schema({
 			},
 			message: 'Provide quantity for all foods'
 		}
+	},
+	branch: {
+		type: String,
+		required: [true, 'Ordered food must belong to a specific branch']
 	}
 });
 
+// MIDDLEWARES
 orderSchema.pre(/^find/, function(next){
 	this.select('-__v');
 	next();

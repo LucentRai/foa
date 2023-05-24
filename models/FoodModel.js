@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 
-const blocks = ['A', 'B', 'C'];
-
 const foodSchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -36,23 +34,27 @@ const foodSchema = new mongoose.Schema({
 	},
 	branch: {
 		type: String,
-		enum: blocks,
 		default: 'A'
 	},
 	slug: String
 },
 {
 	toJSON: {virtuals: true},
-	toObject: {virtuals: true}	
+	toObject: {virtuals: true}
 });
 
 // INDICES
 foodSchema.index({slug: 1});
 
 // DOCUMENT MIDDDLEWARES
+foodSchema.pre(/^find/, function(next){
+	this.select('-__v');
+	next();
+});
 foodSchema.pre('save', function(next){
 	this.slug = slugify(this.name, {lower: true});
 	next();
-})
+});
+
 
 module.exports = mongoose.model('Food', foodSchema);

@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const branchSchema = new mongoose.Schema({
 	name: {
 		type: String,
-		required: [true, 'Block name required'],
+		required: [true, 'Branch name required'],
 		trim: true,
-		maxlength: [20, 'Block name must not exceed 20 characters']
+		maxlength: [20, 'Branch name must not exceed 20 characters']
 	},
 	workers: {
 		type: [mongoose.Schema.ObjectId],
