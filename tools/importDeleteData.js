@@ -18,6 +18,7 @@ else{
 	console.log('Provide additional arguments \n\
 		node importDeleteData.js --import \t imports data to database \n\
 		node importDeleteData.js --delete \t deletes all data from database');
+	process.exit();
 }
 
 async function importData(){
@@ -86,14 +87,14 @@ async function importData(){
 				console.log('Reviews data imported');
 				break;
 
-				case 'B':
-				case 'b':
-				case 'branches':
-					const Branch = require('../models/BranchModel');
-					const branches = JSON.parse(fs.readFileSync(`${__dirname}/data/branches.json`, 'utf-8'));
-					await Branch.create(branches);
-					console.log('Branches data imported');
-					break;
+			case 'B':
+			case 'b':
+			case 'branches':
+				const Branch = require('../models/BranchModel');
+				const branches = JSON.parse(fs.readFileSync(`${__dirname}/data/branches.json`, 'utf-8'));
+				await Branch.create(branches);
+				console.log('Branches data imported');
+				break;
 
 			default:
 				throw "Unrecognized argument";
@@ -111,10 +112,15 @@ async function deleteData(){
 	const Food = require('../models/FoodModel');
 	const Order = require('../models/OrderModel');
 	const User = require('../models/UserModel');
+	const Review = require('../models/ReviewModel');
+	const Branch = require('../models/BranchModel');
+
 	try{
 		await Food.deleteMany();
 		await User.deleteMany();
 		await Order.deleteMany();
+		await Review.deleteMany();
+		await Branch.deleteMany();
 
 		console.log('Data Deleted Successfully');
 	}
