@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AppError = require('../utils/AppError');
 
 const orderSchema = mongoose.Schema({
 	customer: {
@@ -20,6 +21,7 @@ const orderSchema = mongoose.Schema({
 		required: [true, 'Quantity of food must also be provided'],
 		validate: {
 			validator: function (q){
+				console.log('here');
 				return q.length === this.foods.length;
 			},
 			message: 'Provide quantity for all foods'
@@ -31,9 +33,17 @@ const orderSchema = mongoose.Schema({
 	}
 });
 
-// MIDDLEWARES
+
+/****************************** MIDDLEWARES ******************************/
 orderSchema.pre(/^find/, function(next){
 	this.select('-__v');
+	next();
+});
+
+orderSchema.pre('findOneAndUpdate', function(next) {
+	if (this._update.foods.length !== this._update.quantity.length) {
+		throw new AppError('Quantity of food must also be provided', 400);
+	}
 	next();
 });
 

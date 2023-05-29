@@ -5,7 +5,7 @@ const factoryFunc = require('./handlerFactory');
 
 async function getMyOrder(req, res, next){
 	const order = await Order.find({customer: req.userInfo.id}).select('-customer');
-	respondToOrder(order, req.params.id, res, next);
+	respondToOrder(order, res, next, req.params.id);
 }
 
 async function getAllOrders(req, res, next){
@@ -27,7 +27,7 @@ async function getAllOrders(req, res, next){
 			})
 			.select('-branch');
 	}
-	respondToOrder(order, req.params.id, res, next);
+	respondToOrder(order, res, next);
 }
 
 async function getOrder(req, res, next){
@@ -48,10 +48,38 @@ async function getOrder(req, res, next){
 		})
 		.select('-branch');
 	}
-	respondToOrder(order, req.params.id, res, next);
+	respondToOrder(order, res, next, req.params.id);
 }
 
 async function orderFood(req, res, next){
+	const previousOrder = await Order.find({
+		customer: req.userInfo.id,
+		branch: req.body.branch
+	});
+	if(previousOrder.length){
+		if(!req.body.foods || !req.body.portion || !req.body.quantity){
+			return next(new AppError('Insufficient data provided', 403));
+		}
+		previousOrder[0].foods.push(...req.body.foods);
+		previousOrder[0].portion.push(...req.body.portion);
+		previousOrder[0].quantity.push(...req.body.quantity);
+		const obj = {
+			foods: previousOrder[0].foods,
+			portion: previousOrder[0].portion,
+			quantity: previousOrder[0].quantity
+		};
+		const order = await Order.findByIdAndUpdate(previousOrder[0]._id, obj,{
+			new: true
+		});
+
+		res.status(200)
+			.json({
+				status: 'success',
+				data: order
+			});
+		return;
+	}
+
 	const userOrder = {
 		...req.body,
 		customer: req.userInfo.id
@@ -66,12 +94,22 @@ async function orderFood(req, res, next){
 }
 
 async function updateMyOrder(req, res, next){
+	const updatedOrder = {
+		...req.body,
+		customer: req.userInfo.id
+	};
 	
 }
 
-function respondToOrder(order, id, res, next){
+function respondToOrder(order, res, next, id){
 	if(!order.length){
-		return next(new AppError('No order with id found', 404));
+		if(id){
+			const errorMessage = `No order with ${id} found`;
+		}
+		else{
+			const errorMessage = 'No order found';
+		}
+		return next(new AppError(errorMessage, 404));
 	}
 	res.status(200)
 		.json({
