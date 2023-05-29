@@ -14,15 +14,20 @@ const orderSchema = mongoose.Schema({
 	},
 	portion: {
 		type: [Number],
-		default: 1
+		required: [true, 'Food portion must also be provided'],
+		validate: {
+			validator: function (p){
+				return p.length === this.foods.length;
+			},
+			message: 'Provide portions data for all foods'
+		}
 	},
 	quantity: {
 		type: [Number],
 		required: [true, 'Quantity of food must also be provided'],
 		validate: {
 			validator: function (q){
-				console.log('here');
-				return q.length === this.foods.length;
+				return q.length === this.foods.length; // this does not work when updating with findByIdAndUpdate()
 			},
 			message: 'Provide quantity for all foods'
 		}
@@ -33,17 +38,9 @@ const orderSchema = mongoose.Schema({
 	}
 });
 
-
 /****************************** MIDDLEWARES ******************************/
 orderSchema.pre(/^find/, function(next){
 	this.select('-__v');
-	next();
-});
-
-orderSchema.pre('findOneAndUpdate', function(next) {
-	if (this._update.foods.length !== this._update.quantity.length) {
-		throw new AppError('Quantity of food must also be provided', 400);
-	}
 	next();
 });
 

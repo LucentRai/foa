@@ -56,19 +56,32 @@ async function orderFood(req, res, next){
 		customer: req.userInfo.id,
 		branch: req.body.branch
 	});
+
 	if(previousOrder.length){
-		if(!req.body.foods || !req.body.portion || !req.body.quantity){
+		if(req.body.foods.length !== req.body.quantity.length || req.body.foods.length !== req.body.portion.length){
 			return next(new AppError('Insufficient data provided', 403));
 		}
-		previousOrder[0].foods.push(...req.body.foods);
-		previousOrder[0].portion.push(...req.body.portion);
-		previousOrder[0].quantity.push(...req.body.quantity);
+		for(let i = 0; i < req.body.foods.length; i++){
+			if(previousOrder[0].foods.includes(req.body.foods[i])){
+				previousOrder[0].portion[i] += req.body.portion[i];
+				previousOrder[0].quantity[i] += req.body.quantity[i];
+			}
+			else{
+				previousOrder[0].foods.push(req.body.foods[i]);
+				previousOrder[0].portion.push(req.body.portion[i]);
+				previousOrder[0].quantity.push(req.body.quantity[i]);
+			}
+		}
 		const obj = {
 			foods: previousOrder[0].foods,
 			portion: previousOrder[0].portion,
 			quantity: previousOrder[0].quantity
 		};
-		const order = await Order.findByIdAndUpdate(previousOrder[0]._id, obj,{
+		const order = await Order.findByIdAndUpdate(previousOrder[0]._id, {
+			foods: previousOrder[0].foods,
+			portion: previousOrder[0].portion,
+			quantity: previousOrder[0].quantity
+		},{
 			new: true
 		});
 
