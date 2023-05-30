@@ -12,7 +12,8 @@ const reviewSchema = new mongoose.Schema({
 		required: [true, 'Review should belong to a user']
 	},
 	branch: {
-		type: String
+		type: mongoose.Schema.ObjectId,
+		ref: 'Branch'
 	},
 	review: {
 		type: String,

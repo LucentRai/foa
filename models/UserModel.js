@@ -41,8 +41,8 @@ const userSchema = mongoose.Schema({
 		select: false
 	},
 	branch: {
-		type: String,
-		default: 'A'
+		type: mongoose.Schema.ObjectId,
+		ref: 'Branch'
 	}
 });
 

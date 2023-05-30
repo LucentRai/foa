@@ -33,8 +33,8 @@ const foodSchema = new mongoose.Schema({
 		default: 0
 	},
 	branch: {
-		type: String,
-		default: 'A'
+		type: mongoose.Schema.ObjectId,
+		ref: 'Branch'
 	},
 	slug: String
 },

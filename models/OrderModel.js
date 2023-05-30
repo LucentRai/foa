@@ -33,8 +33,8 @@ const orderSchema = mongoose.Schema({
 		}
 	},
 	branch: {
-		type: String,
-		required: [true, 'Ordered food must belong to a specific branch']
+		type: mongoose.Schema.ObjectId,
+		ref: 'Branch'
 	}
 });
 
