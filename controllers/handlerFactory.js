@@ -1,9 +1,26 @@
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 
+exports.get = (Model, filter) => {
+	return catchAsync(async (req, res, next) => {
+		const document = await Model.find(filter);
+		if(!document.length){
+			return next(new AppError(`No document found`, 404));
+		}
+		res.status(200)
+			.json({
+				status: 'success',
+				results: document.length,
+				data: {
+					document
+				}
+			});
+	});
+};
+
 exports.getOne = Model => {
 	return catchAsync(async (req, res, next) => {
-		const document = await Model.findById(req.params.id).select('-__v');
+		const document = await Model.findById(req.params.id);
 		if(!document){
 			return next(new AppError(`No document with ${req.params.id} found`, 404));
 		}
@@ -20,9 +37,9 @@ exports.getOne = Model => {
 
 exports.getAll = Model => {
 	return catchAsync(async (req, res, next) => {
-		const document = await Model.find().select('-__v');
-		if(!document){
-			return next(new AppError(`No document found`, 404));
+		const document = await Model.find();
+		if(!document.length){
+			return next(new AppError('No document found', 404));
 		}
 		res.status(200)
 			.json({
