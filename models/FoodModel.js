@@ -43,18 +43,23 @@ const foodSchema = new mongoose.Schema({
 	toObject: {virtuals: true}
 });
 
+const FoodModel = mongoose.model('Food', foodSchema);
+
+
 // INDICES
 foodSchema.index({slug: 1});
 
-// DOCUMENT MIDDDLEWARES
+
+/****************************** MIDDLEWARES ******************************/
 foodSchema.pre(/^find/, function(next){
 	this.select('-__v');
 	next();
 });
+
 foodSchema.pre('save', function(next){
 	this.slug = slugify(this.name, {lower: true});
 	next();
 });
 
 
-module.exports = mongoose.model('Food', foodSchema);
+module.exports = FoodModel;

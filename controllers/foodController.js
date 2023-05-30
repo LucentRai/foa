@@ -1,14 +1,16 @@
 const Food = require('../models/FoodModel');
-// const AppError = require('../utils/AppError');
-// const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/AppError');
+const catchAsync = require('../utils/catchAsync');
 const factoryFunc = require('./handlerFactory');
 
-
+async function createMenu(req, res, next){
+	
+}
 
 module.exports = {
-	getAllFoods: factoryFunc.getAll(Food),
+	getMenu: factoryFunc.getAll(Food),
 	getFood: factoryFunc.getOne(Food),
-	createFood: factoryFunc.createOne(Food),
-	updateFood: factoryFunc.updateOne(Food),
+	createMenu: catchAsync(createMenu),
+	updateMenu: factoryFunc.updateOne(Food),
 	deleteFood: factoryFunc.deleteOne(Food)
 };

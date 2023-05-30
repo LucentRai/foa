@@ -1,15 +1,21 @@
-const express = require('express');
 const foodController = require('../controllers/foodController');
+const authController = require('../controllers/authController');
+const AppError = require('../utils/AppError');
+const catchAsync = require('../utils/catchAsync');
+const express = require('express');
 
-const router = express.Router();
+const foodRouter = express.Router();
 
-router.route('/')
-	.get(foodController.getAllFoods)
-	.post(foodController.createFood);
+foodRouter.get('/', foodController.getMenu);
+foodRouter.get('/:id', foodController.getFood);
 
-router.route('/:id')
-	.get(foodController.getFood)
-	.patch(foodController.updateFood)
+
+foodRouter.use(authController.protectRoute, authController.restrictTo('cafeteria', 'admin'));
+
+foodRouter.post('/', foodController.createMenu);
+
+foodRouter.route('/:id')
+	.patch(foodController.updateMenu)
 	.delete(foodController.deleteFood);
 
-module.exports = router;
+module.exports = foodRouter;
