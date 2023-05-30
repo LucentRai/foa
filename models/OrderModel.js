@@ -38,11 +38,13 @@ const orderSchema = mongoose.Schema({
 	}
 });
 
+const Order = mongoose.model('Order', orderSchema);
+
 /****************************** MIDDLEWARES ******************************/
 orderSchema.pre(/^find/, function(next){
 	this.select('-__v');
 	next();
 });
 
-const Order = mongoose.model('Order', orderSchema);
+
 module.exports = Order;
