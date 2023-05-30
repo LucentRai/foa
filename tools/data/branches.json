@@ -1,14 +1,11 @@
 [{
-	"name": "A",
-	"workers": [""],
-	"menu": [""]
+	"name": "Block A",
+	"address": "Tutepani, Satdobato, Lalitpur"
 },{
-	"name": "B",
-	"workers": [""],
-	"menu": [""]
+	"name": "Block B",
+	"address": "Mahalaxmisthan, Lagankhel, Lalitpur"
 },{
-	"name": "C",
-	"workers": [""],
-	"menu": [""]
+	"name": "Block C",
+	"address": "Satdobato, Lalitpur"
 }
 ]
