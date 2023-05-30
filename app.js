@@ -11,7 +11,7 @@ if(process.env.NODE_ENV === 'development'){ // for logging in development
 }
 
 
-// ROUTERS
+/****************** ROUTERS ******************/
 const foodRouter = require('./routes/foodRoute');
 const userRouter = require('./routes/userRoute');
 const orderRouter = require('./routes/orderRoute');
@@ -22,7 +22,7 @@ app.use(express.json({limit: '10kb'}));
 app.use(mongoSanitize());
 
 
-// ROUTES
+/****************** ROUTES ******************/
 app.use('/api/menu', foodRouter);
 app.use('/api/user', userRouter);
 app.use('/api/order', orderRouter);
