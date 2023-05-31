@@ -7,7 +7,8 @@
 		"samosa.jpg"
 	],
 	"ratingsAverage": 4,
-	"ratingsQuantity": 2
+	"ratingsQuantity": 2,
+	"branch": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643dd7d8d2849ddf7b3f8b",
 	"name": "Daal Bhat",
@@ -17,7 +18,8 @@
 		"asdf.jpg"
 	],
 	"ratingsAverage": 3.5,
-	"ratingsQuantity": 4
+	"ratingsQuantity": 4,
+	"branch": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643dd7d8d2849ddf7b3f8f",
 	"name": "Jerri",
@@ -27,7 +29,8 @@
 		"jerri.jpg"
 	],
 	"ratingsAverage": 4,
-	"ratingsQuantity": 0
+	"ratingsQuantity": 0,
+	"branch": "647574b79b73fc4ea103d696"
 },{
 	"_id":"64643dd7d8d2849ddf7b3f90",
 	"name": "Channa",
@@ -37,7 +40,8 @@
 		"channa.jpg"
 	],
 	"ratingsAverage": 3,
-	"ratingsQuantity": 3
+	"ratingsQuantity": 3,
+	"branch": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643dd7d8d2849ddf7b3f8c",
 	"name": "Pakoda",
@@ -47,7 +51,8 @@
 		"pakoda.jpg"
 	],
 	"ratingsAverage": 2,
-	"ratingsQuantity": 3
+	"ratingsQuantity": 3,
+	"branch": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643dd7d8d2849ddf7b3f8e",
 	"name": "Hard Boiled Egg",
@@ -57,5 +62,6 @@
 		"egg.jpg"
 	],
 	"ratingsAverage": 4.5,
-	"ratingsQuantity": 1
+	"ratingsQuantity": 1,
+	"branch": "647574b79b73fc4ea103d696"
 }]
