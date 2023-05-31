@@ -23,7 +23,7 @@ app.use(mongoSanitize());
 
 
 /****************** ROUTES ******************/
-app.use('/api/menu', foodRouter);
+app.use('/api/food', foodRouter);
 app.use('/api/user', userRouter);
 app.use('/api/order', orderRouter);
 app.use('/api/review', reviewRouter);
