@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const AppError = require('../utils/AppError');
 
 const reviewSchema = new mongoose.Schema({
-	food: {
-		type: mongoose.Schema.ObjectId,
-		ref: 'Food'
-	},
 	user: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'User',
 		required: [true, 'Review should belong to a user']
+	},
+	food: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'Food'
 	},
 	branch: {
 		type: mongoose.Schema.ObjectId,
