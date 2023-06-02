@@ -154,8 +154,8 @@ async function deleteData(){
 				console.log("Deleted Review data successfully.");
 				break;
 
-			case 'B':
-			case 'b':
+			case 'C':
+			case 'c':
 			case 'canteens':
 				const Canteen = require('../models/CanteenModel');
 				await Canteen.deleteMany();
