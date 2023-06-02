@@ -11,7 +11,7 @@ foodRouter.get('/menu/:branch', foodController.getMenu);
 foodRouter.get('/:id', foodController.getFood);
 
 
-foodRouter.use(authController.protectRoute, authController.restrictTo('cafeteria', 'admin'));
+foodRouter.use(authController.protectRoute, authController.restrictTo('canteen', 'admin'));
 
 foodRouter.post('/', foodController.createMenu);
 

@@ -4,7 +4,7 @@ const validator = require('validator');
 const AppError = require('../utils/AppError');
 // const catchAsync = require('../utils/catchAsync');
 
-const roles = ['admin', 'student', 'customer', 'cafeteria'];
+const roles = ['admin', 'student', 'customer', 'canteen'];
 
 const userSchema = mongoose.Schema({
 	name: {

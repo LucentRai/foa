@@ -8,7 +8,7 @@ canteenRouter.get('/', canteenController.getAllBranches);
 canteenRouter.get('/:branchName', canteenController.getBranch);
 
 canteenRouter.use(authController.protectRoute);
-canteenRouter.patch('/', authController.restrictTo('cafeteria'), canteenController.updateMyBranch);
+canteenRouter.patch('/', authController.restrictTo('canteen'), canteenController.updateMyBranch);
 
 canteenRouter.use(authController.restrictTo('admin'));
 

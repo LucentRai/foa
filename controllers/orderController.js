@@ -15,7 +15,7 @@ async function getAllOrders(req, res, next){
 		order = await Order.find()
 			.populate('customer');
 	}
-	else if(req.userInfo.role === 'cafeteria'){ // all orders with foods availabe at specific cafeteria
+	else if(req.userInfo.role === 'canteen'){ // all orders with foods availabe at specific canteen
 		order = await Order.find({branch: req.userInfo.branch})
 			.populate({
 					path: 'customer',
@@ -37,10 +37,10 @@ async function getOrder(req, res, next){
 		order = await Order.find({customer: req.params.id})
 			.populate('foods');
 	}
-	else if(req.userInfo.role === 'cafeteria'){
+	else if(req.userInfo.role === 'canteen'){
 		order = await Order.find({
 			customer: req.params.id,
-			branch: req.userInfo.branch // ordered food should be in that cafeteria
+			branch: req.userInfo.branch // ordered food should be in that canteen
 		})
 		.populate({
 			path: 'customer',

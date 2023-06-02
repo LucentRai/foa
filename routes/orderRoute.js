@@ -11,12 +11,12 @@ orderRouter.route('/')
 	.patch(authController.restrictTo('admin'), orderController.updateOrder);
 
 orderRouter.get('/my-order', authController.restrictTo('student', 'customer', 'admin'), orderController.getMyOrder);
-orderRouter.get('/all', authController.restrictTo('admin', 'cafeteria'), orderController.getAllOrders);
+orderRouter.get('/all', authController.restrictTo('admin', 'canteen'), orderController.getAllOrders);
 orderRouter.delete('/delete/:id', authController.restrictTo('admin'), orderController.deleteOrder);
 
 orderRouter.route('/:id')
-	.get(authController.restrictTo('admin', 'cafeteria'), orderController.getOrder)
+	.get(authController.restrictTo('admin', 'canteen'), orderController.getOrder)
 	.patch(authController.restrictTo('student', 'customer'), orderController.updateMyOrder)
-	.delete(authController.restrictTo('admin', 'cafeteria'), orderController.deleteOrder);
+	.delete(authController.restrictTo('admin', 'canteen'), orderController.deleteOrder);
 
 module.exports = orderRouter;
