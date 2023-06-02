@@ -1,14 +1,14 @@
 [{
 	"_id": "647574b79b73fc4ea103d696",
-	"name": "Block-A",
+	"name": "Block A",
 	"address": "Tutepani, Satdobato, Lalitpur"
 },{
 	"_id": "647574b79b73fc4ea103d695",
-	"name": "Block-B",
+	"name": "Block B",
 	"address": "Mahalaxmisthan, Lagankhel, Lalitpur"
 },{
 	"_id": "647574b79b73fc4ea103d697",
-	"name": "Block-C",
+	"name": "Block C",
 	"address": "Satdobato, Lalitpur"
 }
 ]
