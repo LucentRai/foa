@@ -34,7 +34,8 @@ const foodSchema = new mongoose.Schema({
 	},
 	canteen: {
 		type: mongoose.Schema.ObjectId,
-		ref: 'Canteen'
+		ref: 'Canteen',
+		required: [true, 'Food item must belong to a canteen']
 	},
 	slug: String
 },
