@@ -1,5 +1,6 @@
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
+const APIFeatures = require('../utils/APIFeatures');
 
 exports.get = (Model, filter) => {
 	return catchAsync(async (req, res, next) => {
@@ -37,7 +38,14 @@ exports.getOne = Model => {
 
 exports.getAll = Model => {
 	return catchAsync(async (req, res, next) => {
-		const document = await Model.find();
+		const features = new APIFeatures(Model.find(), req.query)
+			.filter()
+			.sort()
+			.limitFields()
+			.paginate();
+
+		const document = await features.query;
+
 		if(!document.length){
 			return next(new AppError('No document found', 404));
 		}

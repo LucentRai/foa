@@ -6,8 +6,10 @@ class APIFeatures{
 
 	filter(){
 		const queryObj = {...this.queryString};	// copy object by value
-		const excludeFields = ['page', 'sort', 'limit', 'fields'];
+		const excludeFields = ['page', 'sort', 'limit', 'fields']; // 'limit' => कति अाेटा result देखाउने
+		console.log(queryObj);
 		excludeFields.forEach(el => delete queryObj[el]);
+		console.log(queryObj);
 
 		let queryString = JSON.stringify(queryObj);
 		queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, matchedString => `$${matchedString}`);	// adds $ sign in front of operator like 'gte' with '$gte'
@@ -23,7 +25,7 @@ class APIFeatures{
 			this.query = this.query.sort(sortBy);
 		}
 		else{
-			this.query = this.query.sort('createdAt');	// default sorting order
+			this.query = this.query.sort('name');	// default sorting order
 		}
 
 		return this;
@@ -33,10 +35,6 @@ class APIFeatures{
 		if(this.queryString.fields){
 			const fields = this.queryString.fields.split(',').join(' ');
 			this.query = this.query.select(fields);	// show only these fields
-		}
-		else{ // Default field limiting
-			// __v is a field used by mongoose for internal working mechanism
-			this.query = this.query.select('-__v');	// - sign indicates exclusion
 		}
 		return this;
 	}

@@ -6,7 +6,8 @@ const express = require('express');
 
 const foodRouter = express.Router();
 
-foodRouter.get('/', foodController.getMenu);
+foodRouter.get('/menu/', foodController.getMenu);
+foodRouter.get('/menu/:branch', foodController.getMenu);
 foodRouter.get('/:id', foodController.getFood);
 
 
