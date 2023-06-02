@@ -64,10 +64,6 @@ userSchema.methods.doesPasswordMatch = async function (inputPassword, actualPass
 	return await bcrypt.compare(inputPassword, actualPassword);
 };
 
-const User = mongoose.model('User', userSchema);
-User.roles = [...roles];
-
-module.exports = User;
 
 async function uniqueRollCheck(roll){
 	if(!roll){
@@ -79,3 +75,8 @@ async function uniqueRollCheck(roll){
 	}
 	return true;
 }
+
+
+const User = mongoose.model('User', userSchema);
+User.roles = [...roles];
+module.exports = User;
