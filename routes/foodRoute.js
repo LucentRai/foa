@@ -6,8 +6,8 @@ const express = require('express');
 
 const foodRouter = express.Router();
 
-foodRouter.get('/menu/', foodController.getMenu);
-foodRouter.get('/menu/:branch', foodController.getMenu);
+foodRouter.get('/menu/', foodController.getAllMenu);
+foodRouter.get('/menu/:canteenSlug', foodController.getCanteenMenu);
 foodRouter.get('/:id', foodController.getFood);
 
 
@@ -17,6 +17,6 @@ foodRouter.post('/', foodController.createMenu);
 
 foodRouter.route('/:id')
 	.patch(foodController.updateMenu)
-	.delete(foodController.deleteFood);
+	.delete(foodController.deleteMenuItem);
 
 module.exports = foodRouter;
