@@ -7,9 +7,7 @@ class APIFeatures{
 	filter(){
 		const queryObj = {...this.queryString};	// copy object by value
 		const excludeFields = ['page', 'sort', 'limit', 'fields']; // 'limit' => कति अाेटा result देखाउने
-		console.log(queryObj);
 		excludeFields.forEach(el => delete queryObj[el]);
-		console.log(queryObj);
 
 		let queryString = JSON.stringify(queryObj);
 		queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, matchedString => `$${matchedString}`);	// adds $ sign in front of operator like 'gte' with '$gte'
