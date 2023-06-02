@@ -11,9 +11,9 @@ const reviewSchema = new mongoose.Schema({
 		type: mongoose.Schema.ObjectId,
 		ref: 'Food'
 	},
-	branch: {
+	canteen: {
 		type: mongoose.Schema.ObjectId,
-		ref: 'Branch'
+		ref: 'Canteen'
 	},
 	review: {
 		type: String,

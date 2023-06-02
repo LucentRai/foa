@@ -40,9 +40,9 @@ const userSchema = mongoose.Schema({
 		minlength: [8, 'Password must be at least 8 characters long'],
 		select: false
 	},
-	branch: {
+	canteen: {
 		type: mongoose.Schema.ObjectId,
-		ref: 'Branch'
+		ref: 'Canteen'
 	}
 });
 

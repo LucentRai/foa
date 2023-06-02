@@ -8,7 +8,7 @@ mongoose
 	.connect(process.env.DB_LOCAL)
 	.then(() => console.log('DATABASE CONNECTED'));
 
-var Food, User, Order, Review, Branch;
+var Food, User, Order, Review, Canteen;
 
 if(process.argv[2] === '--import'){
 	importData();
@@ -32,7 +32,7 @@ async function importData(){
 			const users = JSON.parse(fs.readFileSync(`${__dirname}/data/users.json`, 'utf-8'));
 			const orders = JSON.parse(fs.readFileSync(`${__dirname}/data/orders.json`, 'utf-8'));
 			const reviews = JSON.parse(fs.readFileSync(`${__dirname}/data/reviews.json`, 'utf-8'));
-			const branches = JSON.parse(fs.readFileSync(`${__dirname}/data/branches.json`, 'utf-8'));
+			const canteens = JSON.parse(fs.readFileSync(`${__dirname}/data/canteens.json`, 'utf-8'));
 
 			await Food.create(foods);
 			console.log('Food Data Imported Successfully');
@@ -42,8 +42,8 @@ async function importData(){
 			console.log('Order Data Imported Successfully');
 			await Review.create(reviews);
 			console.log('Review Data Imported Successfully');
-			await Branch.create(branches);
-			console.log('Branch Data Imported Successfully');
+			await Canteen.create(canteens);
+			console.log('Canteen Data Imported Successfully');
 
 			process.exit();
 		}
@@ -85,13 +85,13 @@ async function importData(){
 				console.log('Reviews data imported');
 				break;
 
-			case 'B':
-			case 'b':
-			case 'branches':
-				const Branch = require('../models/BranchModel');
-				const branches = JSON.parse(fs.readFileSync(`${__dirname}/data/branches.json`, 'utf-8'));
-				await Branch.create(branches);
-				console.log('Branches data imported');
+			case 'C':
+			case 'c':
+			case 'canteens':
+				const Canteen = require('../models/CanteenModel');
+				const canteens = JSON.parse(fs.readFileSync(`${__dirname}/data/canteens.json`, 'utf-8'));
+				await Canteen.create(canteens);
+				console.log('Canteens data imported');
 				break;
 
 			default:
@@ -115,7 +115,7 @@ async function deleteData(){
 			await User.deleteMany();
 			await Order.deleteMany();
 			await Review.deleteMany();
-			await Branch.deleteMany();
+			await Canteen.deleteMany();
 
 			console.log('Data Deleted Successfully');
 			process.exit();
@@ -156,10 +156,10 @@ async function deleteData(){
 
 			case 'B':
 			case 'b':
-			case 'branches':
-				const Branch = require('../models/BranchModel');
-				await Branch.deleteMany();
-				console.log("Deleted Branch data successfully.");
+			case 'canteens':
+				const Canteen = require('../models/CanteenModel');
+				await Canteen.deleteMany();
+				console.log("Deleted Canteen data successfully.");
 				break;
 
 			default:
@@ -177,5 +177,5 @@ function requireAllJSON(){
 	Order = require('../models/OrderModel');
 	User = require('../models/UserModel');
 	Review = require('../models/ReviewModel');
-	Branch = require('../models/BranchModel');
+	Canteen = require('../models/CanteenModel');
 }

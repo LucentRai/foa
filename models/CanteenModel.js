@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const branchSchema = new mongoose.Schema({
+const canteenSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		unique: [true, 'Branch name must be unique'],
@@ -30,16 +30,12 @@ const branchSchema = new mongoose.Schema({
 });
 
 
-const BranchModel = mongoose.model('Branch', branchSchema, 'branches');
-
-// INDICES
-branchSchema.index({slug: 1});
 
 /****************************** MIDDLEWARES ******************************/
-branchSchema.pre(/^find/, function(next){
+canteenSchema.pre(/^find/, function(next){
 	this.select('-__v');
-	console.log('h')
 	next();
 });
 
-module.exports = BranchModel;
+const CanteenModel = mongoose.model('Canteen', canteenSchema);
+module.exports = CanteenModel;

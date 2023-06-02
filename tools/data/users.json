@@ -4,14 +4,14 @@
 	"role": "admin",
 	"email": "lucent@gmail.com",
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5b8",
 	"name": "Ayush Acharya",
 	"role": "admin",
 	"email": "ayush@gmail.com",
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5b9",
 	"name": "Ayush Pradhan",
@@ -19,21 +19,21 @@
 	"email": "pradhan@gmail.com",
 	"rollNo": 190317,
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5b6",
 	"name": "Kashmin Shrestha",
 	"role": "admin",
 	"email": "kashmin@gmail.com",
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5b7",
 	"name": "Raymond Maharjan",
 	"role": "admin",
 	"email": "raymond@gmail.com",
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5bc",
 	"name": "Ram Limbu",
@@ -41,14 +41,14 @@
 	"email": "ram@gmail.com",
 	"rollNo": 190320,
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5bd",
 	"name": "Som Magar",
 	"role": "cafeteria",
 	"email": "som@gmail.com",
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5ba",
 	"name": "Manas Shrestha",
@@ -56,7 +56,7 @@
 	"email": "manas@gmail.com",
 	"rollNo": 190318,
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 },{
 	"_id": "64643cbd30898028df60d5bb",
 	"name": "Laxmi Mahato",
@@ -64,5 +64,5 @@
 	"email": "laxmi@gmail.com",
 	"rollNo": 190319,
 	"password": "p@ssw0rd1234",
-	"branch": "647574b79b73fc4ea103d696"
+	"canteen": "647574b79b73fc4ea103d696"
 }]

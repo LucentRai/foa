@@ -32,9 +32,9 @@ const foodSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
-	branch: {
+	canteen: {
 		type: mongoose.Schema.ObjectId,
-		ref: 'Branch'
+		ref: 'Canteen'
 	},
 	slug: String
 },
@@ -43,7 +43,6 @@ const foodSchema = new mongoose.Schema({
 	toObject: {virtuals: true}
 });
 
-const FoodModel = mongoose.model('Food', foodSchema);
 
 
 // INDICES
@@ -62,4 +61,5 @@ foodSchema.pre('save', function(next){
 });
 
 
+const FoodModel = mongoose.model('Food', foodSchema);
 module.exports = FoodModel;

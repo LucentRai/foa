@@ -32,9 +32,9 @@ const orderSchema = mongoose.Schema({
 			message: 'Provide quantity for all foods'
 		}
 	},
-	branch: {
+	canteen: {
 		type: mongoose.Schema.ObjectId,
-		ref: 'Branch'
+		ref: 'Canteen'
 	}
 });
 
