@@ -17,7 +17,23 @@ async function createMenu(req, res, next){
 }
 
 async function updateMyMenu(req, res, next){
+	req.params.id = req.body.id;
+	const food = await Food.findById(req.body.id);
+	console.log(food.canteen, req.userInfo.canteen);
 	
+	if(food.canteen.toString() !== req.userInfo.canteen.toString()){
+		return next(new AppError('You are not authorized to do this operation', 403));
+	}
+	factoryFunc.updateOne(Food)(req, res, next);
+}
+
+async function deleteMyMenu(req, res, next){
+	const food = await Food.findById(req.params.id);
+
+	if(food.canteen.toString() !== req.userInfo.canteen.toString()){
+		return next(new AppError('You are not authorized to do this operation', 403));
+	}
+	factoryFunc.deleteOne(Food)(req, res, next);
 }
 
 module.exports = {
@@ -25,7 +41,8 @@ module.exports = {
 	getCanteenMenu,
 	getFood: factoryFunc.getOne(Food),
 	createMenu: catchAsync(createMenu),
-	updateMyMenu: catchAsync(updateMyMenu),
 	updateMenu: factoryFunc.updateOne(Food),
-	deleteMenuItem: factoryFunc.deleteOne(Food)
+	updateMyMenu: catchAsync(updateMyMenu),
+	deleteMenuItem: factoryFunc.deleteOne(Food),
+	deleteMyMenu: catchAsync(deleteMyMenu)
 };

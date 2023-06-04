@@ -11,10 +11,14 @@ foodRouter.get('/menu/:canteenSlug', foodController.getCanteenMenu);
 foodRouter.get('/:id', foodController.getFood);
 
 
-foodRouter.use(authController.protectRoute, authController.restrictTo('canteen', 'admin'));
+foodRouter.use(authController.protectRoute);
 
-foodRouter.post('/', foodController.createMenu);
+foodRouter.post('/', authController.restrictTo('canteen', 'admin'), foodController.createMenu);
 
+foodRouter.patch('/update', authController.restrictTo('canteen'), foodController.updateMyMenu);
+foodRouter.delete('/delete/:id', authController.restrictTo('canteen'), foodController.deleteMyMenu);
+
+foodRouter.use(authController.restrictTo('admin'));
 foodRouter.route('/:id')
 	.patch(foodController.updateMenu)
 	.delete(foodController.deleteMenuItem);
