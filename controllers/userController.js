@@ -25,4 +25,4 @@ module.exports = {
 	updateMe: catchAsync(updateMe),
 	updateUser: factoryFunc.updateOne(User),
 	deleteUser: factoryFunc.deleteOne(User)
-}
+};

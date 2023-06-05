@@ -11,10 +11,15 @@ userRouter.post('/signup', authController.signup);
 userRouter.use(authController.protectRoute);
 userRouter.get('/my-profile', userController.getMyProfile);
 
+// ONLY FOR ADMINS
 userRouter.use(authController.restrictTo('admin'));
+
 userRouter.route('/')
+	.get(userController.getAllUsers)
+	.post(userController.createUser);
+
+userRouter.route('/:id')
 	.get(userController.getUser)
-	.post(userController.createUser)
 	.patch(userController.updateUser)
 	.delete(userController.deleteUser);
 
