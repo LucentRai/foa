@@ -1,6 +1,7 @@
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 const APIFeatures = require('../utils/APIFeatures');
+const { request } = require('express');
 
 exports.get = (Model, filter) => {
 	return catchAsync(async (req, res, next) => {
@@ -38,6 +39,19 @@ exports.getOne = Model => {
 
 exports.getAll = (Model, filter) => {
 	return catchAsync(async (req, res, next) => {
+		let filter = {}; // for nested GET reviews in food and canteen route
+
+		if(req.params.foodId){
+			filter = {
+				food: req.params.foodId
+			};
+		}
+		else if(req.params.canteenId){
+			filter = {
+				canteen: req.params.canteenId
+			};
+		}
+
 		const features = new APIFeatures(Model.find(filter), req.query)
 			.filter()
 			.sort()
