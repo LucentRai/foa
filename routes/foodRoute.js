@@ -1,10 +1,11 @@
 const foodController = require('../controllers/foodController');
 const authController = require('../controllers/authController');
-const AppError = require('../utils/AppError');
-const catchAsync = require('../utils/catchAsync');
+const reviewRouter = require('./reviewRoute');
 const express = require('express');
 
 const foodRouter = express.Router();
+
+foodRouter.use('/:foodId/reviews', reviewRouter);
 
 foodRouter.get('/menu/', foodController.getAllMenu);
 foodRouter.get('/menu/:canteenSlug', foodController.getCanteenMenu);
