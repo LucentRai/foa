@@ -39,8 +39,8 @@ reviewSchema.pre(/^find/, function(next){
 	next();
 });
 reviewSchema.pre('save', function(next){
-	if(this.food && this.branch){
-		next(new AppError('Cannot add review of food and block at the same time', 400));
+	if(this.food && this.canteen){
+		next(new AppError('Cannot add review of both food and canteen at the same time', 400));
 	}
 	next();
 });
