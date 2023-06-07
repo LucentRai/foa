@@ -1,8 +1,11 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const canteenController = require('../controllers/canteenController');
+const reviewRouter = require('./reviewRoute');
 
-const canteenRouter = express.Router();
+const canteenRouter = express.Router({mergeParams: true});
+
+canteenRouter.use('/:canteenId/reviews', reviewRouter);
 
 canteenRouter.get('/', canteenController.getAllBranches);
 canteenRouter.get('/:branchName', canteenController.getBranch);
