@@ -1,5 +1,5 @@
 const Review = require('../models/ReviewModel');
-const AppError = require('../controllers/errorController');
+const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
 const factoryFunc = require('./handlerFactory');
 
@@ -11,10 +11,20 @@ async function createReview(req, res, next){
 	factoryFunc.createOne(Review)(req, res, next);
 }
 
+async function deleteReview(req, res, next){
+	const review = await Review.findById(req.params.id);
+	if(req.userInfo.role === 'student' || req.userInfo.role === 'customer'){
+		if(review.user.toString() !== req.userInfo._id.toString()){
+			return next(new AppError('You are not authorized to do this operation', 403));
+		}
+	}
+	factoryFunc.deleteOne(Review)(req, res, next);
+}
+
 module.exports = {
 	createReview: catchAsync(createReview),
 	getAllReview: factoryFunc.getAll(Review),
 	getReview: factoryFunc.getOne(Review),
 	updateReview: factoryFunc.updateOne(Review),
-	deleteReview: factoryFunc.deleteOne(Review)
-}
+	deleteReview: catchAsync(deleteReview)
+};

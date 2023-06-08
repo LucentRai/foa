@@ -10,7 +10,7 @@ reviewRouter.route('/')
 	.get(reviewController.getAllReview)
 	.post(authController.restrictTo('admin', 'student', 'customer'), reviewController.createReview);
 
-reviewRouter.route(':/id')
+reviewRouter.route('/:id')
 	.patch(authController.restrictTo('admin', 'student', 'customer'), reviewController.updateReview)
 	.delete(authController.restrictTo('admin', 'student', 'customer'), reviewController.deleteReview);
 
