@@ -1,6 +1,6 @@
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
-const APIFeatures = require('../utils/APIFeatures');
+const APIFeatures = require('../utils/apiFeatures');
 const { request } = require('express');
 
 exports.get = (Model, filter) => {
