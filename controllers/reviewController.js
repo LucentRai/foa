@@ -11,6 +11,17 @@ async function createReview(req, res, next){
 	factoryFunc.createOne(Review)(req, res, next);
 }
 
+async function updateReview(req, res, next){
+	const review = await Review.findById(req.params.id);
+	if(!review){
+		return next(new AppError(`No review with id ${req.params.id} found`, 404));
+	}
+	if(review.user.toString() !== req.userInfo._id.toString()){
+		return next(new AppError('You are not authorized to do this operation', 403));
+	}
+	factoryFunc.updateOne(Review)(req, res, next);
+}
+
 async function deleteReview(req, res, next){
 	const review = await Review.findById(req.params.id);
 	if(req.userInfo.role === 'student' || req.userInfo.role === 'customer'){
@@ -25,6 +36,6 @@ module.exports = {
 	createReview: catchAsync(createReview),
 	getAllReview: factoryFunc.getAll(Review),
 	getReview: factoryFunc.getOne(Review),
-	updateReview: factoryFunc.updateOne(Review),
+	updateReview: catchAsync(updateReview),
 	deleteReview: catchAsync(deleteReview)
 };
