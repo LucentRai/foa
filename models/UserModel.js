@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const validator = require('validator');
 const AppError = require('../utils/AppError');
 // const catchAsync = require('../utils/catchAsync');
@@ -43,7 +44,9 @@ const userSchema = mongoose.Schema({
 	canteen: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'Canteen'
-	}
+	},
+	passwordResetToken: String,
+	passwordResetExpires: Date
 });
 
 // MIDDLEWARES
@@ -63,6 +66,19 @@ userSchema.pre('save', async function(next){
 userSchema.methods.doesPasswordMatch = async function (inputPassword, actualPassword){
 	return await bcrypt.compare(inputPassword, actualPassword);
 };
+
+userSchema.methods.createResetPasswordToken = function(){
+	const resetToken = crypto.randomBytes(32).toString('hex');
+
+	this.passwordResetToken = crypto
+		.createHash('sha256')
+		.update(resetToken)
+		.digest('hex');
+
+	this.passwordResetExpires = Date.now() + 10 * 60 * 1000; // 10 minutes after
+
+	return resetToken;
+}
 
 
 async function uniqueRollCheck(roll){

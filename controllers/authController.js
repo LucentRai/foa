@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const User = require('../models/UserModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
+const sendEmail = require('../utils/email');
 
 async function login(req, res, next){
 	const {email, password} = req.body;
@@ -38,6 +39,56 @@ async function signup(req, res, next){
 
 	const newUser = await User.create(userDetail);
 	sendTokenResponse(newUser, 201, res);
+}
+
+async function forgotPassword(req, res, next){
+	const user = await User.findOne({email: req.body.email});
+	if(!user){
+		return next(new AppError('Could not find user with that email', 404));
+	}
+
+	const resetToken = user.createResetPasswordToken();
+	await user.save();
+
+	try{ // Sending mail
+		const resetURL = `${req.protocol}://${req.get('host')}/api/user/resetPassword/${resetToken}`;
+		await sendEmail({
+			email: user.email,
+			subject: 'Your password reset token (valid for 10 minutes)',
+			message: `Click this link to reset your password: ${resetURL}\nIf you didn't request this then please ignore this mail.`
+		});
+
+		sendTokenResponse(user, 200, res);
+	}
+	catch(err){
+		user.passwordResetToken = undefined;
+		user.passwordResetExpires = undefined;
+		user.save();
+		next(new AppError('Failed to send password reset email', 500));
+	}
+}
+
+async function resetPassword(req, res, next){
+	// Get user based on hashed token
+	const hashedToken = crypto
+		.createHash('sha256')
+		.update(req.params.token)
+		.digest('hex');
+	const user = await User.findOne({
+		passwordResetToken: hashedToken,
+		passwordResetExpires: {$gt: Date.now()} // make sure reset token is not expired
+	});
+
+	if(!user){
+		return next(new AppError('Token invalid or expired', 400));
+	}
+
+	user.password = req.body.password;
+	user.passwordResetExpires = undefined;
+	user.passwordResetToken = undefined;
+	await user.save();
+
+	sendTokenResponse(user, 200, res);
 }
 
 async function protectRoute(req, res, next){
@@ -98,5 +149,7 @@ module.exports = {
 	login: catchAsync(login),
 	signup: catchAsync(signup),
 	protectRoute: catchAsync(protectRoute),
-	restrictTo
+	restrictTo,
+	forgotPassword: catchAsync(forgotPassword),
+	resetPassword: catchAsync(resetPassword)
 };
