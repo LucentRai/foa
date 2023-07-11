@@ -1,23 +1,60 @@
+const {convert} = require('html-to-text');
 const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 
-async function sendEmail(options){
-	const transporter = nodemailer.createTransport({
-		host: process.env.EMAIL_HOST,
-		port: process.env.EMAIL_PORT,
-		auth: {
-			user: process.env.EMAIL_USERNAME,
-			pass: process.env.EMAIL_PASSWORD
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+class Email{
+	constructor(user, url){
+		this.to = user.email;
+		this.firstName = user.name.split(' ')[0];
+		this.url = url;
+		this.from = `Support <${process.env.EMAIL_FROM}>`;
+	}
+
+	newTransport(){
+		if(process.env.NODE_ENV === 'production'){
+			return;
 		}
-	});
 
-	const mailOptions = {
-		from: 'support <support@cosmoscollege.edu.np>',
-		to: options.email,
-		subject: options.subject,
-		text: options.message
-	};
+		return nodemailer.createTransport({
+			host: process.env.EMAIL_HOST,
+			port: process.env.EMAIL_PORT,
+			auth: {
+				user: process.env.EMAIL_USERNAME,
+				pass: process.env.EMAIL_PASSWORD
+			}
+		});
+	}
 
-	await transporter.sendMail(mailOptions);
+	async send(template, subject){ // sends the actual email
+		// Render HTML based on pug template
+		const html = pug.renderFile(`${__dirname}/../views/emails/${template}.pug`,
+		{
+			firstName: this.firstName,
+			url: this.url,
+			subject
+		});
+
+		const mailOptions = {
+			from: this.from,
+			to: this.to,
+			subject,
+			html,
+			text: convert(html)
+		};
+
+		await this.newTransport().sendMail(mailOptions);
+	}
+
+	async sendThanks(){
+		this.send('thank', 'Thank you for signing up');
+	}
+
+	async sendPasswordReset(){
+		this.send('passwordReset', 'Your password reset token (valid for 10 minutes)');
+	}
 }
 
-module.exports = sendEmail;
+
+module.exports = Email;

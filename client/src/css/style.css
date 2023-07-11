@@ -1,0 +1,13 @@
+#modalLogin {
+	position: fixed !important;
+	top: 0 !important;
+	z-index: 10000 !important;
+	visibility: hidden;
+}
+
+#modalSignUp {
+	position: fixed !important;
+	top: 0 !important;
+	z-index: 10000 !important;
+	visibility: hidden;
+}

@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const User = require('../models/UserModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
-const sendEmail = require('../utils/email');
+const Email = require('../utils/email');
 
 async function login(req, res, next){
 	const {email, password} = req.body;
@@ -52,11 +52,7 @@ async function forgotPassword(req, res, next){
 
 	try{ // Sending mail
 		const resetURL = `${req.protocol}://${req.get('host')}/api/user/resetPassword/${resetToken}`;
-		await sendEmail({
-			email: user.email,
-			subject: 'Your password reset token (valid for 10 minutes)',
-			message: `Click this link to reset your password: ${resetURL}\nIf you didn't request this then please ignore this mail.`
-		});
+		await new Email(user, resetURL).sendPasswordReset();
 
 		sendTokenResponse(user, 200, res);
 	}
