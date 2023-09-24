@@ -1,6 +1,6 @@
-server/node_modules
-server/config.env
-server/tools/test.js
-server/tools/notes.ai
-server/tools/1x
+node_modules
+config.env
+tools/test.js
+tools/notes.ai
+tools/1x
 graphics
