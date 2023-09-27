@@ -5,6 +5,7 @@ const userController = require('../controllers/userController');
 const userRouter = express.Router();
 
 userRouter.post('/login', authController.login);
+userRouter.post('/logout', authController.logout);
 userRouter.post('/signup', authController.signup);
 userRouter.post('/forgotPassword', authController.forgotPassword);
 userRouter.patch('/resetPassword/:token', authController.resetPassword);

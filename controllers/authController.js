@@ -18,6 +18,18 @@ async function login(req, res, next){
 	sendTokenResponse(user, 200, res);
 }
 
+async function logout(req, res){
+	res.cookie('jwt', 'loggedout', {
+		expires: new Date(Date.now() + 10 * 1000),
+		httpOnly: true
+	});
+
+	res.status(200)
+		.json({
+			status: "success"
+		});
+}
+
 async function signup(req, res, next){
 	if(!(req.body.role === 'student') && !(req.body.role === 'customer')){ // values other than student or customer will not pass
 		return next(new AppError('Cannot create this user role from this route. Contact Admin', 400));
@@ -93,6 +105,9 @@ async function protectRoute(req, res, next){
 	if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
 		token = req.headers.authorization.split(' ')[1];
 	}
+	else if (req.cookies.jwt){
+		token = req.cookies.jwt;
+	}
 
 	if(!token){
 		next(new AppError('Please login to view this page', 401));
@@ -106,6 +121,35 @@ async function protectRoute(req, res, next){
 	}
 
 	req.userInfo = userInfo;
+	next();
+}
+
+async function isLoggedIn(req, res, next){
+	let token;
+
+	try{
+		if(req.cookies.jwt){
+			token = req.cookies.jwt;
+		}
+
+		if(!token){
+			return next();
+		}
+
+		// JWT Verification
+		const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+		// check if user exists
+		const userInfo = await User.findById(decoded.id);
+		if(!userInfo){
+			return next();
+		}
+
+		res.locals.user = userInfo; // available to pug templates
+	}
+	catch(err){
+		return next();
+	}
 	next();
 }
 
@@ -143,8 +187,10 @@ function sendTokenResponse(user, statusCode, res){
 
 module.exports = {
 	login: catchAsync(login),
+	logout: catchAsync(logout),
 	signup: catchAsync(signup),
 	protectRoute: catchAsync(protectRoute),
+	isLoggedIn: catchAsync(isLoggedIn),
 	restrictTo,
 	forgotPassword: catchAsync(forgotPassword),
 	resetPassword: catchAsync(resetPassword)

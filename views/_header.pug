@@ -10,10 +10,22 @@ header.p-3.text-bg-dark
 					a.nav-link.px-2.text-white(href='/menu') Menu
 				li
 					a.nav-link.px-2.text-white(href='/canteen') Canteens
+				if user
+					li
+						a.nav-link.px-2.text-white(href='/my-profile') Profile
 				li
 					a.nav-link.px-2.text-white(href='/about') About
 			form.col-12.col-lg-auto.mb-3.mb-lg-0.me-lg-3(role='search')
 				input.form-control.form-control-dark.text-bg-dark(type='search' placeholder='Search...' aria-label='Search')
-			.text-end
-				button#login.btn.btn-outline-light.me-2(type='button') Login
-				button#signup.btn.btn-warning(type='button') Sign-up
+			if user
+				.cart
+					a.nav-link.px-2.text-white(href='/cart')
+						i.fa-solid.fa-shopping-cart
+						span.badge.bg-danger.text-dark
+							| 1
+				a#logoutBtn.btn.btn-warning(type='button') Log out 
+					i.fa-solid.fa-right-from-bracket
+			else
+				.text-end
+					button#login.btn.btn-outline-light.me-2(type='button') Login
+					button#signup.btn.btn-warning(type='button') Sign-up

@@ -1,22 +1,10 @@
 const express = require('express');
 const path = require('path');
 const mongoSanitize = require('express-mongo-sanitize');
+const cookieParser = require('cookie-parser');
+
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./controllers/errorController');
-
-const app = express();
-
-app.set('view engine', 'pug'); // pug template engine
-app.set('views', path.join(__dirname, 'views'));
-
-
-app.use(express.static(path.join(__dirname, 'public'))); // serving static files
-if(process.env.NODE_ENV === 'development'){ // for logging in development
-
-	const morgan = require('morgan');
-	app.use(morgan('dev'));
-}
-
 
 /****************** ROUTERS ******************/
 const foodRouter = require('./routes/foodRoute');
@@ -26,8 +14,23 @@ const reviewRouter = require('./routes/reviewRoute');
 const canteenRouter = require('./routes/canteenRoute');
 const viewRouter = require('./routes/viewRoute');
 
-app.use(express.json({limit: '10kb'}));
-app.use(mongoSanitize());
+
+const app = express();
+
+app.set('view engine', 'pug'); // pug template engine
+app.set('views', path.join(__dirname, 'views'));
+
+
+app.use(express.static(path.join(__dirname, 'public'))); // serving static files
+if(process.env.NODE_ENV === 'development'){ // for logging in development
+	const morgan = require('morgan');
+	app.use(morgan('dev'));
+}
+
+app.use(express.json({limit: '10kb'})); // parse data from body
+app.use(cookieParser()); // parse cookies from header
+// app.use(mongoSanitize());
+
 
 
 /****************** ROUTES ******************/
