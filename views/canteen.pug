@@ -12,6 +12,6 @@ block content
 							.mb-1.text-muted #{canteen.address}
 							p.card-text.mb-auto
 								| #{canteen.description}
-							a.stretched-link(href='#') Show Menu
+							a.stretched-link(href=`/menu/${canteen.slug}`) Show Menu
 						.col-auto.d-none.d-lg-block
 							img.canteen(src=`${canteen.photo}` alt=`${canteen.name}`)
