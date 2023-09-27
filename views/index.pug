@@ -1,0 +1,50 @@
+extends base
+
+block content
+	main
+		#myCarousel.carousel.slide.pointer-event(data-bs-ride='carousel')
+			.carousel-indicators
+				button.active(type='button' data-bs-target='#myCarousel' data-bs-slide-to='0' aria-label='Slide 1' aria-current='true')
+				button(type='button' data-bs-target='#myCarousel' data-bs-slide-to='1' aria-label='Slide 2')
+				button(type='button' data-bs-target='#myCarousel' data-bs-slide-to='2' aria-label='Slide 3')
+			.carousel-inner
+				.carousel-item.active
+					img.d-block.w-100(src='img/foods/thali.jpg')
+					.container
+						.carousel-caption.text-start
+							h1 Example headline.
+							p Some representative placeholder content for the first slide of the carousel.
+							p
+								a.btn.btn-lg.btn-primary(href='#') Sign up today
+				.carousel-item
+					img.d-block.w-100(src='img/foods/momo.jpg')
+					.container
+						.carousel-caption
+							h1 Another example headline.
+							p Some representative placeholder content for the second slide of the carousel.
+							p
+								a.btn.btn-lg.btn-primary(href='#') Learn more
+				.carousel-item
+					img.d-block.w-100(src='img/foods/thukpa.jpg')
+					.container
+						.carousel-caption.text-end
+							h1 One more for good measure.
+							p Some representative placeholder content for the third slide of this carousel.
+							p
+								a.btn.btn-lg.btn-primary(href='#') Browse gallery
+			button.carousel-control-prev(type='button' data-bs-target='#myCarousel' data-bs-slide='prev')
+				span.carousel-control-prev-icon(aria-hidden='true')
+				span.visually-hidden Previous
+			button.carousel-control-next(type='button' data-bs-target='#myCarousel' data-bs-slide='next')
+				span.carousel-control-next-icon(aria-hidden='true')
+				span.visually-hidden Next
+		.container.marketing
+			each canteen in canteens
+				hr.featurette-divider
+				.row.featurette
+					.col-md-7
+						h2.featurette-heading.fw-normal.lh-1 #{canteen.name}
+						p.lead
+							| #{canteen.description}
+					.col-md-5
+						img.featurette-image.img-fluid.mx-auto(src=`${canteen.photo}`, alt=`${canteen.name}`)
