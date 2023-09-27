@@ -7,7 +7,7 @@ const canteenSchema = new mongoose.Schema({
 		unique: [true, 'Branch name must be unique'],
 		required: [true, 'Branch name required'],
 		trim: true,
-		maxlength: [20, 'Branch name must not exceed 20 characters']
+		maxlength: [20, 'Branch name must not exceed 20 characters'],
 	},
 	workers: {
 		type: [mongoose.Schema.ObjectId],
@@ -26,6 +26,17 @@ const canteenSchema = new mongoose.Schema({
 		trim: true,
 		required: [true, 'Branch must have adddress'],
 		maxlength: [100, 'Branch location cannot exceed 100 characters']
+	},
+	description: {
+		type: String,
+		required: [true, 'Canteen branch must have description'],
+		trim: true,
+		minlength: [20, 'Description must have atleast 20 characters'],
+		maxlenght: [200, 'Description cannot exceed 200 characters']
+	},
+	photo: {
+		type: String,
+		default: 'default.jpg',
 	},
 	slug: String
 });
