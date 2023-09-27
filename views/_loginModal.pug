@@ -1,0 +1,43 @@
+#modalLogin.modal.modal-signin.position-static.d-block.bg-secondary.py-5(tabindex="-1", role="dialog")
+	.modal-dialog(role="document")
+		.modal-content.rounded-4.shadow
+			.modal-header.p-5.pb-4.border-bottom-0
+				a.d-flex.align-items-center.mb-2.mb-lg-0(href="index.html")
+					img.bi.me-2(src="assets/logo.svg", width="40", height="32", role="img")
+				h1.fw-bold.mb-0.fs-2 User Login
+				button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+			.modal-body.p-5.pt-0
+				form#loginForm
+					.form-floating.mb-3
+						input#loginEmail.form-control.rounded-3(type="email", placeholder="name@example.com")
+						label(for="floatingInput") Email address
+					.form-floating.mb-3
+						input#loginPassword.form-control.rounded-3(type="password", placeholder="Password")
+						label(for="loginPassword") Password
+					button.w-100.mb-2.btn.btn-lg.rounded-3.btn-primary(type="submit") Login
+#modalSignUp.modal.modal-signin.position-static.d-block.bg-secondary.py-5(tabindex="-1", role="dialog")
+	.modal-dialog(role="document")
+		.modal-content.rounded-4.shadow
+			.modal-header.p-5.pb-4.border-bottom-0
+				a.d-flex.align-items-center.mb-2.mb-lg-0(href="index.html")
+					img.bi.me-2(src="assets/logo.svg", width="40", height="32", role="img")
+				h1.fw-bold.mb-0.fs-2 Sign up for free
+				button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
+			.modal-body.p-5.pt-0
+				form#signup-form
+					.form-floating.mb-3
+						input.form-control.rounded-3(type="text", placeholder="Full Name")
+						label(for="floatingInput") Full Name
+					.form-floating.mb-3
+						input.form-control.rounded-3(type="email", placeholder="name@example.com")
+						label(for="floatingInput") Email address
+					.form-floating.mb-3
+						input#signupPassword.form-control.rounded-3(type="password", placeholder="Password")
+						label(for="signupPassword") Password
+					select#canteen.form-select.mb-3(name="canteen")
+						option(selected) Select default Canteen
+						option(value="Block-A") Block A
+						option(value="Block-B") Block B
+						option(value="Block-C") Block C
+					button.w-100.mb-2.btn.btn-lg.rounded-3.btn-primary(type="submit") Sign up
+					small.text-muted By clicking Sign up, you agree to the terms of use.
