@@ -9,9 +9,10 @@ const app = express();
 app.set('view engine', 'pug'); // pug template engine
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, 'public'))); // serving static files
 
+app.use(express.static(path.join(__dirname, 'public'))); // serving static files
 if(process.env.NODE_ENV === 'development'){ // for logging in development
+
 	const morgan = require('morgan');
 	app.use(morgan('dev'));
 }

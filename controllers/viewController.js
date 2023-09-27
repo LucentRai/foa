@@ -63,7 +63,8 @@ async function getCanteen(req, res, next) {
 function getAbout(req, res, next) {
 	res.status(200)
 		.render('about', {
-			title: 'About us || Cosmos Food Ordering App'
+			title: 'About us || Cosmos Food Ordering App',
+			head: `link rel="stylesheet" href="/css/about.css"`
 		});
 }
 
