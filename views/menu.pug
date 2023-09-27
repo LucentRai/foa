@@ -3,11 +3,12 @@ extends base
 block content
 	.album.py-5.bg-light
 		.container
+			h1.text-center.mt-4.mb-4 #{h1}
 			.row.row-cols-1.row-cols-sm-2.row-cols-md-3.g-3
 				each food in foods
 					.col
 						.card.shadow-sm
-							img.card-img-top(src=`${food.images[0]}` alt='')
+							img.card-img-top(src=`/img/foods/${food.images[0]}` alt='')
 							.card-body
 								p.card-text
 									| #{food.summary}
