@@ -1,14 +1,20 @@
 [{
 	"_id": "647574b79b73fc4ea103d696",
 	"name": "Block A",
-	"address": "Tutepani, Satdobato, Lalitpur"
+	"address": "Tutepani, Satdobato, Lalitpur",
+	"description": "The Block A canteen is a bustling food hub located in Block A of the campus. It is a spacious and well-designed area with a variety of food options to cater to different tastes and preferences. The canteen offers a wide range of food stalls and counters, including local cuisine, fast food, vegetarian options, and international dishes. Students and staff often gather here during lunch breaks and snack times to enjoy their meals and socialize. The canteen provides ample seating arrangements, both indoors and outdoors, allowing individuals to dine comfortably. It is known for its vibrant atmosphere and lively ambiance.",
+	"photo": "img/canteens/block-A.JPG"
 },{
 	"_id": "647574b79b73fc4ea103d695",
 	"name": "Block B",
-	"address": "Mahalaxmisthan, Lagankhel, Lalitpur"
+	"address": "Mahalaxmisthan, Lagankhel, Lalitpur",
+	"description": "The Block B canteen is a popular dining spot situated in Block B of the campus. It is known for its diverse culinary offerings and quick service. The canteen features a well-organized layout, with different sections dedicated to various food categories. Students and faculty members can find a wide selection of food stalls, including regional delicacies, grab-and-go snacks, beverages, and desserts. The canteen also offers a cozy seating area with tables and chairs, creating a relaxed environment for individuals to enjoy their meals. With its convenient location and delicious food options, the Block B canteen is a favorite gathering spot for students and staff alike.",
+	"photo": "img/canteens/block-B.JPG"
 },{
 	"_id": "647574b79b73fc4ea103d697",
 	"name": "Block C",
-	"address": "Satdobato, Lalitpur"
+	"address": "Satdobato, Lalitpur",
+	"description": "The Block C canteen is a vibrant food court located in Block C of the campus. It is designed to accommodate a large number of people and offers a diverse range of culinary choices. The canteen is known for its spacious seating area, which includes long communal tables and comfortable chairs. It houses multiple food stalls, each specializing in different cuisines such as Chinese, Indian, Italian, and more. Additionally, the canteen provides options for both vegetarian and non-vegetarian food lovers. The Block C canteen is often frequented by students, faculty, and staff who appreciate the lively atmosphere and wide variety of delicious food options available.",
+	"photo": "img/canteens/block-C.JPG"
 }
 ]
