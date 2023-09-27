@@ -4,7 +4,7 @@
 	"price": 25,
 	"summary": "समाेसा",
 	"images": [
-		"samosa.jpg"
+		"img/foods/samosa.jpg"
 	],
 	"ratingsAverage": 4,
 	"ratingsQuantity": 2,
@@ -15,7 +15,7 @@
 	"price": 120,
 	"summary": "Daal Bhat Tarkari",
 	"images": [
-		"asdf.jpg"
+		"img/foods/thali.jpg"
 	],
 	"ratingsAverage": 3.5,
 	"ratingsQuantity": 4,
@@ -26,7 +26,7 @@
 	"price": 15,
 	"summary": "जेरी",
 	"images": [
-		"jerri.jpg"
+		"img/foods/jerri.jpg"
 	],
 	"ratingsAverage": 4,
 	"ratingsQuantity": 0,
@@ -37,7 +37,7 @@
 	"price": 10,
 	"summary": "चना",
 	"images": [
-		"channa.jpg"
+		"img/foods/chana.JPG"
 	],
 	"ratingsAverage": 3,
 	"ratingsQuantity": 3,
@@ -48,7 +48,7 @@
 	"price": 30,
 	"summary": "ताताे पकाेडा",
 	"images": [
-		"pakoda.jpg"
+		"img/foods/pakoda.jpg"
 	],
 	"ratingsAverage": 2,
 	"ratingsQuantity": 3,
@@ -59,7 +59,7 @@
 	"price": 20,
 	"summary": "अण्डा",
 	"images": [
-		"egg.jpg"
+		"img/foods/Hard-boiled-egg.jpg"
 	],
 	"ratingsAverage": 4.5,
 	"ratingsQuantity": 1,
