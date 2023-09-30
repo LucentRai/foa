@@ -24,20 +24,20 @@
 				h1.fw-bold.mb-0.fs-2 Sign up for free
 				button.btn-close(type="button", data-bs-dismiss="modal", aria-label="Close")
 			.modal-body.p-5.pt-0
-				form#signup-form
+				form#signup-form(action="/signup", method="POST")
 					.form-floating.mb-3
-						input.form-control.rounded-3(type="text", placeholder="Full Name")
+						input.form-control.rounded-3(name="name" type="text", placeholder="Full Name", required="required")
 						label(for="floatingInput") Full Name
 					.form-floating.mb-3
-						input.form-control.rounded-3(type="email", placeholder="name@example.com")
+						input.form-control.rounded-3(name="email" type="email", placeholder="name@example.com", required="required")
 						label(for="floatingInput") Email address
 					.form-floating.mb-3
-						input#signupPassword.form-control.rounded-3(type="password", placeholder="Password")
+						input#signupPassword.form-control.rounded-3(name="password" type="password", placeholder="Password", required="required")
 						label(for="signupPassword") Password
-					select#canteen.form-select.mb-3(name="canteen")
-						option(selected) Select default Canteen
-						option(value="Block-A") Block A
-						option(value="Block-B") Block B
-						option(value="Block-C") Block C
+					select#canteen.form-select.mb-3(name="canteen" required="required")
+						option(selected value="not-selected") Select default Canteen
+						option(value="647574b79b73fc4ea103d696") Block A
+						option(value="647574b79b73fc4ea103d695") Block B
+						option(value="647574b79b73fc4ea103d697") Block C
 					button.w-100.mb-2.btn.btn-lg.rounded-3.btn-primary(type="submit") Sign up
 					small.text-muted By clicking Sign up, you agree to the terms of use.

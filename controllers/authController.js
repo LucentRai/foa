@@ -172,9 +172,6 @@ function sendTokenResponse(user, statusCode, res){
 		expires: new Date(Date.now() + process.env.JWT_EXPIRATION_JS * 24 * 60 * 60 * 1000),
 		HTTPOnly: true // cookie cannot be accessed or modified by browser
 	};
-	if(process.env.NODE_ENV === 'production'){
-		cookieOptions.secure = true; // send cookie only on HTTPS
-	}
 	user.password = undefined; // remove password fields if selected
 	res.cookie('jwt', token, cookieOptions);
 	res.status(statusCode)
@@ -193,5 +190,6 @@ module.exports = {
 	isLoggedIn: catchAsync(isLoggedIn),
 	restrictTo,
 	forgotPassword: catchAsync(forgotPassword),
-	resetPassword: catchAsync(resetPassword)
+	resetPassword: catchAsync(resetPassword),
+	generateToken
 };

@@ -21,6 +21,27 @@ if(loginBtn && signUpBtn && closeBtn){
 			modalLogin.style.visibility = "hidden";
 		});
 	});
+
+	document.querySelector('#loginForm').addEventListener('submit', e => {
+		e.preventDefault();
+		const email = document.getElementById('loginEmail').value;
+		const password = document.getElementById('loginPassword').value;
+		login(email, password);
+	});
+
+	function showAlert(type, msg){
+		hideAlert();
+		const markup = `<div class="alert alert--${type}">${msg}</div>`;
+		document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+		window.setTimeout(hideAlert, 5000);
+	};
+
+	function hideAlert(){
+		const el = document.querySelector('.alert');
+		if(el){
+			el.parentElement.removeChild(el);
+		}
+	}
 }
 
 if(logoutBtn){
@@ -42,10 +63,7 @@ async function login(email, password) {
 		});
 
 		if(res.data.status === 'success'){
-			showAlert('success', 'Logged in successfully!');
-			window.setTimeout(() => {
-				location.assign('/');
-			}, 1500);
+			location.assign('/');
 		}
 	}
 	catch(err) {
@@ -68,24 +86,3 @@ async function logout(){
 		showAlert('error', 'Error logging out. Try Again');
 	}
 };
-
-document.querySelector('#loginForm').addEventListener('submit', e => {
-	e.preventDefault();
-	const email = document.getElementById('loginEmail').value;
-	const password = document.getElementById('loginPassword').value;
-	login(email, password);
-});
-
-function showAlert(type, msg){
-	hideAlert();
-	const markup = `<div class="alert alert--${type}">${msg}</div>`;
-	document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
-	window.setTimeout(hideAlert, 5000);
-};
-
-function hideAlert(){
-	const el = document.querySelector('.alert');
-	if(el){
-		el.parentElement.removeChild(el);
-	}
-}

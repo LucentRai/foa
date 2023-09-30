@@ -12,4 +12,6 @@ viewRouter.get('/menu/:canteenSlug', viewController.getMenu);
 viewRouter.get('/canteen', viewController.getCanteen);
 viewRouter.get('/about', viewController.getAbout);
 
+viewRouter.post('/signup', viewController.signup);
+
 module.exports = viewRouter;
