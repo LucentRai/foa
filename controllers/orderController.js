@@ -116,11 +116,12 @@ async function updateMyOrder(req, res, next){
 
 function respondToOrder(order, res, next, id){
 	if(!order.length){
+		let errorMessage = '';
 		if(id){
-			const errorMessage = `No order with ${id} found`;
+			errorMessage = `No order with ${id} found`;
 		}
 		else{
-			const errorMessage = 'No order found';
+			errorMessage = 'No order found';
 		}
 		return next(new AppError(errorMessage, 404));
 	}
